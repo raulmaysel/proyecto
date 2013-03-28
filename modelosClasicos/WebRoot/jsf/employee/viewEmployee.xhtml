@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/jsf/employee/listEmployees.xhtml"/>
+		
+			<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.employeenumber}"/>
+						<h:outputText value="#{employeemsgs['employee.lastname.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.lastname}"/>
+						<h:outputText value="#{employeemsgs['employee.firstname.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.firstname}"/>
+						<h:outputText value="#{employeemsgs['employee.extension.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.extension}"/>
+						<h:outputText value="#{employeemsgs['employee.email.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.email}"/>
+						<h:outputText value="#{employeemsgs['employee.reportsto.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.reportsto}"/>
+						<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.jobtitle}"/>
+				</h:panelGrid>
+			</p:panel>
+
+			<p:panel header="#{employeemsgs['office.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="office" columns="2" styleClass="grid" columnClasses="label,value" rendered="#{EmployeeComponent.employee.office != null}" >
+					<h:outputText value="#{employeemsgs['office.officecode.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.officecode}"/>
+					<h:outputText value="#{employeemsgs['office.city.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.city}"/>
+					<h:outputText value="#{employeemsgs['office.phone.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.phone}"/>
+					<h:outputText value="#{employeemsgs['office.addressline1.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.addressline1}"/>
+					<h:outputText value="#{employeemsgs['office.addressline2.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.addressline2}"/>
+					<h:outputText value="#{employeemsgs['office.state.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.state}"/>
+					<h:outputText value="#{employeemsgs['office.country.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.country}"/>
+					<h:outputText value="#{employeemsgs['office.postalcode.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.postalcode}"/>
+					<h:outputText value="#{employeemsgs['office.territory.title']}:" />
+							<h:outputText value="#{EmployeeComponent.employee.office.territory}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="2" styleClass="grid" columnClasses="label,value" rendered="#{EmployeeComponent.employee.office != null}" >
+					<p:commandButton image="edit" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.edit']}" action="#{EmployeeComponent.editEmployeeOffice(EmployeeComponent.employee.employeenumber, EmployeeComponent.employee.office.officecode)}"/>
+					<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.delete']}" action="#{EmployeeComponent.confirmDeleteEmployeeOffice(EmployeeComponent.employee.employeenumber, EmployeeComponent.employee.office.officecode)}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="1" styleClass="grid" columnClasses="label,value" rendered="#{EmployeeComponent.employee.office == null}" >
+					<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{EmployeeComponent.newEmployeeOffice(EmployeeComponent.employee.employeenumber)}"/>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

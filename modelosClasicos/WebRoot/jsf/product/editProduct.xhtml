@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{productmsgs['navigation.back']}" action="/jsf/product/listProducts.xhtml"/>
+		
+			<p:panel header="#{productmsgs['product.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{productmsgs['product.productcode.title']}:*" />
+							<h:outputText value="#{ProductComponent.product.productcode}"/>
+						<h:outputText value="#{productmsgs['product.productname.title']}:" />
+							<h:inputText id="product_productname" value="#{ProductComponent.product.productname}" required="false" label="product_productname" />
+						<h:outputText value="#{productmsgs['product.productline.title']}:" />
+							<h:inputText id="product_productline" value="#{ProductComponent.product.productline}" required="false" label="product_productline" />
+						<h:outputText value="#{productmsgs['product.productscale.title']}:" />
+							<h:inputText id="product_productscale" value="#{ProductComponent.product.productscale}" required="false" label="product_productscale" />
+						<h:outputText value="#{productmsgs['product.productvendor.title']}:" />
+							<h:inputText id="product_productvendor" value="#{ProductComponent.product.productvendor}" required="false" label="product_productvendor" />
+						<h:outputText value="#{productmsgs['product.productdescription.title']}:" />
+							<h:inputText id="product_productdescription" value="#{ProductComponent.product.productdescription}" required="false" label="product_productdescription" />
+						<h:outputText value="#{productmsgs['product.quantityinstock.title']}:" />
+							<h:inputText id="product_quantityinstock" value="#{ProductComponent.product.quantityinstock}" required="false" label="product_quantityinstock" />
+						<h:outputText value="#{productmsgs['product.buyprice.title']}:" />
+							<h:inputText id="product_buyprice" value="#{ProductComponent.product.buyprice}" required="false" label="product_buyprice" />
+						<h:outputText value="#{productmsgs['product.msrp.title']}:" />
+							<h:inputText id="product_msrp" value="#{ProductComponent.product.msrp}" required="false" label="product_msrp" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{productmsgs['navigation.save']}" action="#{ProductComponent.saveProduct(ProductComponent.product)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

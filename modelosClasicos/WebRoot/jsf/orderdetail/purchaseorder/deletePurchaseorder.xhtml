@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.back']}" action="/jsf/orderdetail/viewOrderdetail.xhtml"/>
+		
+			<p:panel header="#{orderdetailmsgs['purchaseorder.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.purchaseordernumber.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.purchaseordernumber}"/>
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.orderdate.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.orderdate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.requireddate.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.requireddate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.shippeddate.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.shippeddate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.status.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.status}"/>
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.comments.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.comments}"/>
+					<h:outputText value="#{orderdetailmsgs['purchaseorder.customernumber.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.purchaseorder.customernumber}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.delete']}" action="#{OrderdetailComponent.deleteOrderdetailPurchaseorder(OrderdetailComponent.orderdetail.purchaseordernumber, OrderdetailComponent.orderdetail.productcode, OrderdetailComponent.purchaseorder.purchaseordernumber)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

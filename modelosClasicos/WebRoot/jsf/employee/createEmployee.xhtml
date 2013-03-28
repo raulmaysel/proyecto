@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/jsf/employee/listEmployees.xhtml"/>
+		
+			<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:*" />
+							<h:inputText id="employee_employeenumber" value="#{EmployeeComponent.employee.employeenumber}" required="true" label="employee_employeenumber" />
+						<h:outputText value="#{employeemsgs['employee.lastname.title']}:" />
+							<h:inputText id="employee_lastname" value="#{EmployeeComponent.employee.lastname}" required="false" label="employee_lastname" />
+						<h:outputText value="#{employeemsgs['employee.firstname.title']}:" />
+							<h:inputText id="employee_firstname" value="#{EmployeeComponent.employee.firstname}" required="false" label="employee_firstname" />
+						<h:outputText value="#{employeemsgs['employee.extension.title']}:" />
+							<h:inputText id="employee_extension" value="#{EmployeeComponent.employee.extension}" required="false" label="employee_extension" />
+						<h:outputText value="#{employeemsgs['employee.email.title']}:" />
+							<h:inputText id="employee_email" value="#{EmployeeComponent.employee.email}" required="false" label="employee_email" />
+						<h:outputText value="#{employeemsgs['employee.reportsto.title']}:" />
+							<h:inputText id="employee_reportsto" value="#{EmployeeComponent.employee.reportsto}" required="false" label="employee_reportsto" />
+						<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
+							<h:inputText id="employee_jobtitle" value="#{EmployeeComponent.employee.jobtitle}" required="false" label="employee_jobtitle" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}" action="#{EmployeeComponent.saveEmployee(EmployeeComponent.employee)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

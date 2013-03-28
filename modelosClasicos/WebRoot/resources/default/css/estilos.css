@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+.botonConsulta {
+    background-image: url("/images/icons/view.gif");
+}
+
+.ui-loginIcon {   
+    width: 16px;   
+    height: 16px;   
+    background-image: url(#{resources['images:login.png']});   
+}  

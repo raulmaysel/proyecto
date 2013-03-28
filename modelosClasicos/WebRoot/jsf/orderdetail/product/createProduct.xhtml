@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.back']}" action="/jsf/orderdetail/viewOrderdetail.xhtml"/>
+		
+			<p:panel header="#{orderdetailmsgs['product.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{orderdetailmsgs['product.productcode.title']}:*" />
+							<h:inputText id="orderdetail_productcode" value="#{OrderdetailComponent.product.productcode}" required="true" label="orderdetail_productcode" />
+					<h:outputText value="#{orderdetailmsgs['product.productname.title']}:" />
+							<h:inputText id="orderdetail_productname" value="#{OrderdetailComponent.product.productname}" required="false" label="orderdetail_productname" />
+					<h:outputText value="#{orderdetailmsgs['product.productline.title']}:" />
+							<h:inputText id="orderdetail_productline" value="#{OrderdetailComponent.product.productline}" required="false" label="orderdetail_productline" />
+					<h:outputText value="#{orderdetailmsgs['product.productscale.title']}:" />
+							<h:inputText id="orderdetail_productscale" value="#{OrderdetailComponent.product.productscale}" required="false" label="orderdetail_productscale" />
+					<h:outputText value="#{orderdetailmsgs['product.productvendor.title']}:" />
+							<h:inputText id="orderdetail_productvendor" value="#{OrderdetailComponent.product.productvendor}" required="false" label="orderdetail_productvendor" />
+					<h:outputText value="#{orderdetailmsgs['product.productdescription.title']}:" />
+							<h:inputText id="orderdetail_productdescription" value="#{OrderdetailComponent.product.productdescription}" required="false" label="orderdetail_productdescription" />
+					<h:outputText value="#{orderdetailmsgs['product.quantityinstock.title']}:" />
+							<h:inputText id="orderdetail_quantityinstock" value="#{OrderdetailComponent.product.quantityinstock}" required="false" label="orderdetail_quantityinstock" />
+					<h:outputText value="#{orderdetailmsgs['product.buyprice.title']}:" />
+							<h:inputText id="orderdetail_buyprice" value="#{OrderdetailComponent.product.buyprice}" required="false" label="orderdetail_buyprice" />
+					<h:outputText value="#{orderdetailmsgs['product.msrp.title']}:" />
+							<h:inputText id="orderdetail_msrp" value="#{OrderdetailComponent.product.msrp}" required="false" label="orderdetail_msrp" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.save']}" action="#{OrderdetailComponent.saveOrderdetailProduct(OrderdetailComponent.orderdetail.purchaseordernumber, OrderdetailComponent.orderdetail.productcode, OrderdetailComponent.product)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

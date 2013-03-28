@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Manage #{officemsgs['office.title']}s</h1>
+		
+		<h:form>	
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{officemsgs['navigation.new']}" action="#{OfficeComponent.newOffice()}"/>
+			<p:dataTable id="dta" value="#{OfficeComponent.listOffices()}"  var="current" rows="15" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{OfficeComponent.selectOffice(current.officecode)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{OfficeComponent.editOffice(current.officecode)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{OfficeComponent.confirmDeleteOffice(current.officecode)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.officecode.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.officecode}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.city.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.city}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.phone.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.phone}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.addressline1.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.addressline1}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.addressline2.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.addressline2}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.state.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.state}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.country.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.country}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.postalcode.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.postalcode}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['office.territory.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.territory}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

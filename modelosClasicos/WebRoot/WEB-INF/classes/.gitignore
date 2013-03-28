@@ -1,0 +1,12 @@
+/META-INF
+/bundles
+/classicModels-dao-context.xml
+/classicModels-dao.properties
+/classicModels-security-context.xml
+/classicModels-service-context.xml
+/classicModels-web-context.xml
+/com
+/hibernate.properties
+/jaxws
+/jta.properties
+/log4j.properties

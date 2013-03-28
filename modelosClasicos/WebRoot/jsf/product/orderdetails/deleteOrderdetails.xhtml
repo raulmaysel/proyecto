@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{productmsgs['navigation.back']}" action="/jsf/product/viewProduct.xhtml"/>
+		
+			<p:panel header="#{productmsgs['orderdetail.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{productmsgs['orderdetail.purchaseordernumber.title']}:" />
+							<h:outputText value="#{ProductComponent.orderdetails.purchaseordernumber}"/>
+					<h:outputText value="#{productmsgs['orderdetail.productcode.title']}:" />
+							<h:outputText value="#{ProductComponent.orderdetails.productcode}"/>
+					<h:outputText value="#{productmsgs['orderdetail.quantityordered.title']}:" />
+							<h:outputText value="#{ProductComponent.orderdetails.quantityordered}"/>
+					<h:outputText value="#{productmsgs['orderdetail.priceeach.title']}:" />
+							<h:outputText value="#{ProductComponent.orderdetails.priceeach}"/>
+					<h:outputText value="#{productmsgs['orderdetail.orderlinenumber.title']}:" />
+							<h:outputText value="#{ProductComponent.orderdetails.orderlinenumber}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{productmsgs['navigation.delete']}" action="#{ProductComponent.deleteProductOrderdetails(ProductComponent.product.productcode, ProductComponent.orderdetails.purchaseordernumber, ProductComponent.orderdetails.productcode)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

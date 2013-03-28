@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{customermsgs['navigation.back']}" action="/jsf/customer/listCustomers.xhtml"/>
+		
+			<p:panel header="#{customermsgs['customer.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{customermsgs['customer.customernumber.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.customernumber}"/>
+						<h:outputText value="#{customermsgs['customer.customername.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.customername}"/>
+						<h:outputText value="#{customermsgs['customer.contactlastname.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.contactlastname}"/>
+						<h:outputText value="#{customermsgs['customer.contactfirstname.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.contactfirstname}"/>
+						<h:outputText value="#{customermsgs['customer.phone.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.phone}"/>
+						<h:outputText value="#{customermsgs['customer.addressline1.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.addressline1}"/>
+						<h:outputText value="#{customermsgs['customer.addressline2.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.addressline2}"/>
+						<h:outputText value="#{customermsgs['customer.city.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.city}"/>
+						<h:outputText value="#{customermsgs['customer.state.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.state}"/>
+						<h:outputText value="#{customermsgs['customer.postalcode.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.postalcode}"/>
+						<h:outputText value="#{customermsgs['customer.country.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.country}"/>
+						<h:outputText value="#{customermsgs['customer.salesrepemployeenumber.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.salesrepemployeenumber}"/>
+						<h:outputText value="#{customermsgs['customer.creditlimit.title']}:" />
+							<h:outputText value="#{CustomerComponent.customer.creditlimit}"/>
+				</h:panelGrid>
+			</p:panel>
+
+			<p:panel header="#{customermsgs['payment.title']} Details" style="margin-top:10px">
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{customermsgs['navigation.new']}" action="#{CustomerComponent.newCustomerPayments(CustomerComponent.customer.customernumber)}"/>
+			<p:dataTable id="payments" value="#{CustomerComponent.listCustomerPayments(CustomerComponent.customer.customernumber)}"  var="current" rows="10" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{CustomerComponent.selectCustomerPayments(CustomerComponent.customer.customernumber, current.customernumber, current.checknumber)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{CustomerComponent.editCustomerPayments(CustomerComponent.customer.customernumber, current.customernumber, current.checknumber)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{CustomerComponent.confirmDeleteCustomerPayments(CustomerComponent.customer.customernumber, current.customernumber, current.checknumber)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['payment.customernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.customernumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['payment.checknumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.checknumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['payment.paymentdate.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.paymentdate}"  converter="dateConverterForCalendar" />
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['payment.amount.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.amount}"/>
+				</p:column>
+			</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

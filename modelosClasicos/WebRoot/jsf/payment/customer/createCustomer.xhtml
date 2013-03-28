@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{paymentmsgs['navigation.back']}" action="/jsf/payment/viewPayment.xhtml"/>
+		
+			<p:panel header="#{paymentmsgs['customer.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{paymentmsgs['customer.customernumber.title']}:*" />
+							<h:inputText id="payment_customernumber" value="#{PaymentComponent.customer.customernumber}" required="true" label="payment_customernumber" />
+					<h:outputText value="#{paymentmsgs['customer.customername.title']}:" />
+							<h:inputText id="payment_customername" value="#{PaymentComponent.customer.customername}" required="false" label="payment_customername" />
+					<h:outputText value="#{paymentmsgs['customer.contactlastname.title']}:" />
+							<h:inputText id="payment_contactlastname" value="#{PaymentComponent.customer.contactlastname}" required="false" label="payment_contactlastname" />
+					<h:outputText value="#{paymentmsgs['customer.contactfirstname.title']}:" />
+							<h:inputText id="payment_contactfirstname" value="#{PaymentComponent.customer.contactfirstname}" required="false" label="payment_contactfirstname" />
+					<h:outputText value="#{paymentmsgs['customer.phone.title']}:" />
+							<h:inputText id="payment_phone" value="#{PaymentComponent.customer.phone}" required="false" label="payment_phone" />
+					<h:outputText value="#{paymentmsgs['customer.addressline1.title']}:" />
+							<h:inputText id="payment_addressline1" value="#{PaymentComponent.customer.addressline1}" required="false" label="payment_addressline1" />
+					<h:outputText value="#{paymentmsgs['customer.addressline2.title']}:" />
+							<h:inputText id="payment_addressline2" value="#{PaymentComponent.customer.addressline2}" required="false" label="payment_addressline2" />
+					<h:outputText value="#{paymentmsgs['customer.city.title']}:" />
+							<h:inputText id="payment_city" value="#{PaymentComponent.customer.city}" required="false" label="payment_city" />
+					<h:outputText value="#{paymentmsgs['customer.state.title']}:" />
+							<h:inputText id="payment_state" value="#{PaymentComponent.customer.state}" required="false" label="payment_state" />
+					<h:outputText value="#{paymentmsgs['customer.postalcode.title']}:" />
+							<h:inputText id="payment_postalcode" value="#{PaymentComponent.customer.postalcode}" required="false" label="payment_postalcode" />
+					<h:outputText value="#{paymentmsgs['customer.country.title']}:" />
+							<h:inputText id="payment_country" value="#{PaymentComponent.customer.country}" required="false" label="payment_country" />
+					<h:outputText value="#{paymentmsgs['customer.salesrepemployeenumber.title']}:" />
+							<h:inputText id="payment_salesrepemployeenumber" value="#{PaymentComponent.customer.salesrepemployeenumber}" required="false" label="payment_salesrepemployeenumber" />
+					<h:outputText value="#{paymentmsgs['customer.creditlimit.title']}:" />
+							<h:inputText id="payment_creditlimit" value="#{PaymentComponent.customer.creditlimit}" required="false" label="payment_creditlimit" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{paymentmsgs['navigation.save']}" action="#{PaymentComponent.savePaymentCustomer(PaymentComponent.payment.customernumber, PaymentComponent.payment.checknumber, PaymentComponent.customer)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,232 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"  
+	template="/WEB-INF/jsf/template.xhtml">
+	
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="content">
+
+	      <h:form id="formMenu" >  
+		  		
+		  	<h:outputText value="Stateful Switcher:" /> 
+	        <p:themeSwitcher value="redmond" style="width:165px" effect="fade" id="statefulSwitcher">
+	            <f:selectItem itemLabel="Choose Theme" itemValue="" />
+	            <f:selectItems value="#{themeSwitcherBean.themes}" />
+	            <p:ajax listener="#{themeSwitcherBean.saveTheme}" />
+	        </p:themeSwitcher>
+		  	<p:panelGrid id="panelBotones" columns="2" style="hidden">
+		  		<p:commandButton id="carBtn" value="Consultar Empleados" type="button" icon="ui-icon-search" />   
+  
+			    
+			    
+			    
+			    <p:commandButton id="insertBtn" value="Insertar Empleado" icon="ui-icon-star" type="button" onclick="dlg.show()">
+			    	<!-- <p:graphicImage value="/images/login.png" /> -->
+			    </p:commandButton>   
+  
+			    
+			    
+			   
+		  	</p:panelGrid>
+		  	
+	  				<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{employeeBean.nuevoEmpleado}"/>
+			        <p:dataTable id="employeeTable" var="employee" value="#{employeeBean.lista_empleados}" rowKey="#{employee.employeenumber}" 
+			        				paginator="true" rows="6"  selection="#{employeeBean.selectedEmployee}" paginatorPosition="bottom" 
+			        				>  
+				   
+				        <p:ajax event="rowSelect" update=":formMenu:employeeTable" />  
+				  		
+				        <f:facet name="header">  
+				            Lista de Empleados  
+				        </f:facet>  
+				  
+				     
+				        <p:column headerText="Operaciones"  id="number" exportable="false">
+				        
+				        	<p:commandButton icon="view" title="Consultar"  ajax="false" update="employeeTable" action="#{employeeBean.viewEmployee(employee.employeenumber)}"/>
+				        	<p:commandButton icon="edit" title="Modificar" update="employeeTable"/>
+				        	<p:commandButton icon="delete" title="Eliminar"  onclick="dlgEliminar.show()" />
+				            <p:confirmDialog id="confirmDialog" message="¿Está seguro de eliminar el empleado seleccionado?"  
+						                header="Eliminar Empleado" severity="alert" widgetVar="dlgEliminar">  
+						                  
+						        <p:commandButton id="confirm" value="Sí" update="employeeTable,:messages" oncomplete="dlgEliminar.hide()"  
+						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employee)}"/>  
+						        <p:commandButton id="decline" value="No" onclick="dlgEliminar.hide()" type="button" />   
+						                  
+						    </p:confirmDialog>  
+				            
+				        </p:column>  
+				        
+				        
+				   
+				        
+				        <p:column headerText="Nombre" sortBy="#{employee.firstname}" filterBy="#{employee.firstname}" id="name" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="Nombre" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.firstname}"/>  
+				        </p:column> 
+				        <p:column headerText="Apellido" sortBy="#{employee.lastname}" filterBy="#{employee.lastname}" id="lastname" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="Apellido" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.lastname}"/>  
+				        </p:column> 
+				     
+				        <!-- 
+				        <p:column headerText="Oficina" sortBy="#{employee.office.officecode}" filterBy="#{employee.office.officecode}" id="office" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="Oficina" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.office.officecode}"/>  
+				        </p:column>
+				       
+				        <p:column headerText="Extension" sortBy="#{employee.extension}" filterBy="#{employee.extension}" id="extension" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="Extension" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.extension}"/>  
+				        </p:column>
+				         --> 
+				  		 <p:column headerText="E-mail" sortBy="#{employee.email}" filterBy="#{employee.email}" id="email" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="E-mail" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.email}"/>  
+				        </p:column> 
+				         <!-- 
+				         <p:column headerText="Jefe Directo" sortBy="#{employee.reportsto}" filterBy="#{employee.reportsto}" id="jefe" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="Jefe Directo" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.reportsto}"/>
+				        </p:column> 
+				          -->
+				        <p:column headerText="Cargo" sortBy="#{employee.jobtitle}" filterBy="#{employee.jobtitle}" id="titulo" exportable="true">  
+				            <f:facet name="header">  
+					            <h:outputText value="Cargo" />  
+					        </f:facet> 
+				            <h:outputText value="#{employee.jobtitle}"/>  
+				        </p:column>
+	    			</p:dataTable>  
+	    			
+	    
+	    			<h:panelGrid id="exportarDatos" columns="2" style="center">
+	    				
+		    			<p:panel header="Exportar todos los Datos" style="center">
+							<h:commandLink>
+								<p:graphicImage value="/images/excel.png" />
+								<p:dataExporter type="xls" target="employeeTable" fileName="empleados" />
+							</h:commandLink>
+					
+							<h:commandLink>
+								<p:graphicImage value="/images/pdf.png" />
+								<p:dataExporter type="pdf" target="employeeTable" fileName="empleados"/>
+							</h:commandLink>
+							
+							<h:commandLink>
+								<p:graphicImage value="/images/csv.png" />
+								<p:dataExporter type="csv" target="employeeTable" fileName="empleados" />
+							</h:commandLink>
+							
+							<h:commandLink>
+								<p:graphicImage value="/images/xml.png" />
+								<p:dataExporter type="xml" target="employeeTable" fileName="empleados" />
+							</h:commandLink>
+						</p:panel>
+						<p:panel header="Exportar Datos Visibles" style="center">  
+					        <h:commandLink>  
+					            <p:graphicImage value="/images/excel.png" />  
+					            <p:dataExporter type="xls" target="employeeTable" fileName="empleados" pageOnly="true"/>  
+					        </h:commandLink>  
+					  
+					        <h:commandLink>  
+					            <p:graphicImage value="/images/pdf.png" />  
+					            <p:dataExporter type="pdf" target="employeeTable" fileName="empleados" pageOnly="true"/>  
+					        </h:commandLink>  
+					          
+					        <h:commandLink>  
+					            <p:graphicImage value="/images/csv.png" />  
+					            <p:dataExporter type="csv" target="employeeTable" fileName="empleados" pageOnly="true"/>  
+					        </h:commandLink>  
+					          
+					        <h:commandLink>  
+					            <p:graphicImage value="/images/xml.png" />  
+					            <p:dataExporter type="xml" target="employeeTable" fileName="empleados" pageOnly="true"/>  
+					        </h:commandLink>  
+					    </p:panel>  
+					</h:panelGrid>
+	    	
+			    <!-- </p:overlayPanel>  -->
+			    <p:dialog id="insertPanel" header="Login" widgetVar="dlg" showEffect="explode" hideEffect="explode" resizable="false"> 
+			    				  
+				        <h:panelGrid columns="2" cellpadding="5">  
+				            <h:outputLabel for="name" value="Nombre:" />  
+				            <p:inputText value="pepe"   
+				                    id="name" required="true" label="name" />  
+				              
+				            <h:outputLabel for="lastname" value="Apellidos:" />  
+				            <p:inputText value="pepe"   
+				                    id="lastname" required="true" label="lastname" />  
+				                    
+							<h:outputLabel for="oficina" value="Oficina:" />  
+				            <p:inputText value="pepe"   
+				                    id="oficina" required="true" label="oficina" /> 
+				            
+				            <h:outputLabel for="extension" value="Extension:" />  
+				            <p:inputText value="pepe"   
+				                    id="extension" required="true" label="extension" /> 
+				                    
+				            <h:outputLabel for="email" value="E-mail:" />  
+				            <p:inputText value="pepe"   
+				                    id="email" required="true" label="email" /> 
+				                    
+				          	<h:outputLabel for="titulo" value="Título:" />  
+				            <p:inputText value="pepe"   
+				                    id="titulo" required="true" label="titulo" /> 				                    
+				              
+				            <f:facet name="footer">  
+				                <p:commandButton id="newEmployee" value="Crear Empleado" update=":menu:growl"/>
+				                <p:commandButton id="cancelNew" value="Cancelar" onclick="dlg.hide()"/>
+				               <!-- actionListener="#{loginBean.login}"   
+				                    oncomplete="handleLoginRequest(xhr, status, args)" -->  
+				            </f:facet>  
+				        </h:panelGrid>  
+				     		
+			    </p:dialog> 
+		  		<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:*" />
+							<h:inputText id="employee_employeenumber" value="#{sessionScope['selectedEmployee.employeenumber']}" required="true" label="employee_employeenumber" />
+						<!-- 
+						
+						<h:outputText value="#{employeemsgs['employee.lastname.title']}:" />
+							<h:inputText id="employee_lastname" value="#{employeeBean.selectedEmployee.lastname}" required="false" label="employee_lastname" />
+						<h:outputText value="#{employeemsgs['employee.firstname.title']}:" />
+							<h:inputText id="employee_firstname" value="#{employeeBean.selectedEmployee.firstname}" required="false" label="employee_firstname" />
+						<h:outputText value="#{employeemsgs['employee.extension.title']}:" />
+							<h:inputText id="employee_extension" value="#{employeeBean.selectedEmployee.extension}" required="false" label="employee_extension" />
+						<h:outputText value="#{employeemsgs['employee.email.title']}:" />
+							<h:inputText id="employee_email" value="#{employeeBean.selectedEmployee.email}" required="false" label="employee_email" />
+						<h:outputText value="#{employeemsgs['employee.reportsto.title']}:" />
+							<h:inputText id="employee_reportsto" value="#{employeeBean.selectedEmployee.reportsto}" required="false" label="employee_reportsto" />
+						<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
+							<h:inputText id="employee_jobtitle" value="#{employeeBean.selectedEmployee.jobtitle}" required="false" label="employee_jobtitle" />
+						
+						 -->
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
+         									action="#{employeeBean.saveEmployee}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>           
+		    
+    </ui:define>
+
+</ui:composition>
+

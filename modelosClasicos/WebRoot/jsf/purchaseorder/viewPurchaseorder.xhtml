@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.back']}" action="/jsf/purchaseorder/listPurchaseorders.xhtml"/>
+		
+			<p:panel header="#{purchaseordermsgs['purchaseorder.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.purchaseordernumber.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.purchaseordernumber}"/>
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.orderdate.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.orderdate}"  converter="dateConverterForCalendar" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.requireddate.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.requireddate}"  converter="dateConverterForCalendar" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.shippeddate.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.shippeddate}"  converter="dateConverterForCalendar" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.status.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.status}"/>
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.comments.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.comments}"/>
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.customernumber.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.customernumber}"/>
+				</h:panelGrid>
+			</p:panel>
+
+			<p:panel header="#{purchaseordermsgs['orderdetail.title']} Details" style="margin-top:10px">
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.new']}" action="#{PurchaseorderComponent.newPurchaseorderOrderdetails(PurchaseorderComponent.purchaseorder.purchaseordernumber)}"/>
+			<p:dataTable id="orderdetails" value="#{PurchaseorderComponent.listPurchaseorderOrderdetails(PurchaseorderComponent.purchaseorder.purchaseordernumber)}"  var="current" rows="10" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{PurchaseorderComponent.selectPurchaseorderOrderdetails(PurchaseorderComponent.purchaseorder.purchaseordernumber, current.purchaseordernumber, current.productcode)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{PurchaseorderComponent.editPurchaseorderOrderdetails(PurchaseorderComponent.purchaseorder.purchaseordernumber, current.purchaseordernumber, current.productcode)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{PurchaseorderComponent.confirmDeletePurchaseorderOrderdetails(PurchaseorderComponent.purchaseorder.purchaseordernumber, current.purchaseordernumber, current.productcode)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['orderdetail.purchaseordernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.purchaseordernumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['orderdetail.productcode.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productcode}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['orderdetail.quantityordered.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.quantityordered}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['orderdetail.priceeach.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.priceeach}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['orderdetail.orderlinenumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.orderlinenumber}"/>
+				</p:column>
+			</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

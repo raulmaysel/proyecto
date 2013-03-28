@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Manage #{paymentmsgs['payment.title']}s</h1>
+		
+		<h:form>	
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{paymentmsgs['navigation.new']}" action="#{PaymentComponent.newPayment()}"/>
+			<p:dataTable id="dta" value="#{PaymentComponent.listPayments()}"  var="current" rows="15" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{PaymentComponent.selectPayment(current.customernumber, current.checknumber)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{PaymentComponent.editPayment(current.customernumber, current.checknumber)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{PaymentComponent.confirmDeletePayment(current.customernumber, current.checknumber)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{paymentmsgs['payment.customernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.customernumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{paymentmsgs['payment.checknumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.checknumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{paymentmsgs['payment.paymentdate.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.paymentdate}"  converter="dateConverterForCalendar" />
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{paymentmsgs['payment.amount.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.amount}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

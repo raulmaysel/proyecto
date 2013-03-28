@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/jsf/employee/viewEmployee.xhtml"/>
+		
+			<p:panel header="#{employeemsgs['office.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{employeemsgs['office.officecode.title']}:*" />
+							<h:outputText value="#{EmployeeComponent.office.officecode}"/>
+					<h:outputText value="#{employeemsgs['office.city.title']}:" />
+							<h:inputText id="employee_city" value="#{EmployeeComponent.office.city}" required="false" label="employee_city" />
+					<h:outputText value="#{employeemsgs['office.phone.title']}:" />
+							<h:inputText id="employee_phone" value="#{EmployeeComponent.office.phone}" required="false" label="employee_phone" />
+					<h:outputText value="#{employeemsgs['office.addressline1.title']}:" />
+							<h:inputText id="employee_addressline1" value="#{EmployeeComponent.office.addressline1}" required="false" label="employee_addressline1" />
+					<h:outputText value="#{employeemsgs['office.addressline2.title']}:" />
+							<h:inputText id="employee_addressline2" value="#{EmployeeComponent.office.addressline2}" required="false" label="employee_addressline2" />
+					<h:outputText value="#{employeemsgs['office.state.title']}:" />
+							<h:inputText id="employee_state" value="#{EmployeeComponent.office.state}" required="false" label="employee_state" />
+					<h:outputText value="#{employeemsgs['office.country.title']}:" />
+							<h:inputText id="employee_country" value="#{EmployeeComponent.office.country}" required="false" label="employee_country" />
+					<h:outputText value="#{employeemsgs['office.postalcode.title']}:" />
+							<h:inputText id="employee_postalcode" value="#{EmployeeComponent.office.postalcode}" required="false" label="employee_postalcode" />
+					<h:outputText value="#{employeemsgs['office.territory.title']}:" />
+							<h:inputText id="employee_territory" value="#{EmployeeComponent.office.territory}" required="false" label="employee_territory" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}" action="#{EmployeeComponent.saveEmployeeOffice(EmployeeComponent.employee.employeenumber, EmployeeComponent.office)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

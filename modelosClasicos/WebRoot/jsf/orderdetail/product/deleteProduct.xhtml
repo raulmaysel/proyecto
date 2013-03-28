@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.back']}" action="/jsf/orderdetail/viewOrderdetail.xhtml"/>
+		
+			<p:panel header="#{orderdetailmsgs['product.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{orderdetailmsgs['product.productcode.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.productcode}"/>
+					<h:outputText value="#{orderdetailmsgs['product.productname.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.productname}"/>
+					<h:outputText value="#{orderdetailmsgs['product.productline.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.productline}"/>
+					<h:outputText value="#{orderdetailmsgs['product.productscale.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.productscale}"/>
+					<h:outputText value="#{orderdetailmsgs['product.productvendor.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.productvendor}"/>
+					<h:outputText value="#{orderdetailmsgs['product.productdescription.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.productdescription}"/>
+					<h:outputText value="#{orderdetailmsgs['product.quantityinstock.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.quantityinstock}"/>
+					<h:outputText value="#{orderdetailmsgs['product.buyprice.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.buyprice}"/>
+					<h:outputText value="#{orderdetailmsgs['product.msrp.title']}:" />
+							<h:outputText value="#{OrderdetailComponent.product.msrp}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.delete']}" action="#{OrderdetailComponent.deleteOrderdetailProduct(OrderdetailComponent.orderdetail.purchaseordernumber, OrderdetailComponent.orderdetail.productcode, OrderdetailComponent.product.productcode)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

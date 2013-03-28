@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"  
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>		
+
+		<h:form id="formCam">  
+	  
+		    <h:panelGrid columns="2">  
+		        <p:photoCam widgetVar="pc" listener="#{camView.oncapture}" update="photos"/>  
+		  
+		  
+		        <p:imageSwitch effect="zoom" id="photos" rendered="true" widgetVar="slideShow">  
+		            <ui:repeat value="#{camView.photos}" var="photo">  
+		                <p:graphicImage value="/photocam/#{photo}.png" />  
+		            </ui:repeat>  
+		        </p:imageSwitch>  
+		        
+		       
+		    </h:panelGrid>  
+		    <br/>
+			<br/>
+		  	<h:panelGroup id="buttons">  
+			        
+			  
+			        <p:commandButton type="button" value="Capturar" onclick="pc.capture()"/>  
+			        
+			        <p:commandButton id="eliminarFotos" value="Eliminar Fotos" action="#{camView.eliminarFotos}" 
+			        					update="photos,:messages"/>
+			        <p:commandButton id="descargarFotos" value="Descargar Fotos" action="#{camView.eliminarFotos}" 
+			        					update=":messages"></p:commandButton>
+			</h:panelGroup>	  
+		</h:form>  
+	</ui:define>
+</ui:composition>

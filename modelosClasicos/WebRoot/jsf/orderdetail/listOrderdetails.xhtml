@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Manage #{orderdetailmsgs['orderdetail.title']}s</h1>
+		
+		<h:form>	
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{orderdetailmsgs['navigation.new']}" action="#{OrderdetailComponent.newOrderdetail()}"/>
+			<p:dataTable id="dta" value="#{OrderdetailComponent.listOrderdetails()}"  var="current" rows="15" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{OrderdetailComponent.selectOrderdetail(current.purchaseordernumber, current.productcode)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{OrderdetailComponent.editOrderdetail(current.purchaseordernumber, current.productcode)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{OrderdetailComponent.confirmDeleteOrderdetail(current.purchaseordernumber, current.productcode)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{orderdetailmsgs['orderdetail.purchaseordernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.purchaseordernumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{orderdetailmsgs['orderdetail.productcode.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productcode}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{orderdetailmsgs['orderdetail.quantityordered.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.quantityordered}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{orderdetailmsgs['orderdetail.priceeach.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.priceeach}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{orderdetailmsgs['orderdetail.orderlinenumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.orderlinenumber}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

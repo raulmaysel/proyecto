@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Manage #{customermsgs['customer.title']}s</h1>
+		
+		<h:form>	
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{customermsgs['navigation.new']}" action="#{CustomerComponent.newCustomer()}"/>
+			<p:dataTable id="dta" value="#{CustomerComponent.listCustomers()}"  var="current" rows="15" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{CustomerComponent.selectCustomer(current.customernumber)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{CustomerComponent.editCustomer(current.customernumber)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{CustomerComponent.confirmDeleteCustomer(current.customernumber)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.customernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.customernumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.customername.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.customername}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.contactlastname.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.contactlastname}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.contactfirstname.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.contactfirstname}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.phone.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.phone}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.addressline1.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.addressline1}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.addressline2.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.addressline2}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.city.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.city}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.state.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.state}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.postalcode.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.postalcode}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.country.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.country}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.salesrepemployeenumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.salesrepemployeenumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{customermsgs['customer.creditlimit.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.creditlimit}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

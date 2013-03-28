@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"  
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		    <h:form prependId="false" >  
+		
+				<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
+					<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+							<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.employeenumber}"/>
+							<h:outputText value="#{employeemsgs['employee.lastname.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.lastname}"/>
+							<h:outputText value="#{employeemsgs['employee.firstname.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.firstname}"/>
+							<h:outputText value="#{employeemsgs['employee.extension.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.extension}"/>
+							<h:outputText value="#{employeemsgs['employee.email.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.email}"/>
+							<h:outputText value="#{employeemsgs['employee.reportsto.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.reportsto}"/>
+							<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.jobtitle}"/>
+					</h:panelGrid>
+				</p:panel>
+	
+				<p:panel header="#{employeemsgs['office.title']} Details" style="margin-top:10px">
+					<p:messages />
+					<h:panelGrid id="office" columns="2" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office != null}" >
+						<h:outputText value="#{employeemsgs['office.officecode.title']}:" />
+								<h:outputText value="#{employeeBean.selectedEmployee.office.officecode}"/>
+						
+					</h:panelGrid>
+					<h:panelGrid columns="2" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office != null}" >
+						<p:commandButton icon="edit" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.edit']}" action="#{employeeBean.editEmployeeOffice(employeeBean.selectedEmployee.employeenumber, employeeBean.selectedEmployee.office.officecode)}"/>
+						<p:commandButton icon="delete" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.delete']}" action="#{employeeBean.confirmDeleteEmployeeOffice(employeeBean.selectedEmployee.employeenumber, employeeBean.selectedEmployee.office.officecode)}"/>
+					</h:panelGrid>
+					<h:panelGrid columns="1" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office == null}" >
+						<p:commandButton icon="new" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{employeeBean.newEmployeeOffice(employeeBean.selectedEmployee.employeenumber)}"/>
+					</h:panelGrid>
+				</p:panel>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				        <p:panelGrid id="panelVistaEmpleados" columns="2">  
+						    <f:facet name="header">  
+						        Datos del Empleado  
+						    </f:facet>  
+						  
+						    <h:outputText value="Id: " />  
+						    <p:outputLabel value="#{employeeBean.selectedEmployee.employeenumber}"/>
+					          
+					        <h:outputText value="Nombre: " />  
+					        <p:outputLabel value="#{employeeBean.selectedEmployee.firstname}"/>
+					        <h:outputText value="Apellidos: " /> 
+					        <p:outputLabel value="#{employeeBean.selectedEmployee.lastname}"/>
+					        <h:outputText value="Oficina: " />
+					        <p:outputLabel value="#{employeeBean.selectedEmployee.office.officecode}"/>
+					        <h:outputText value="Extension: " />
+					        <p:outputLabel value="#{employeeBean.selectedEmployee.extension}"/>
+					        <h:outputText value="Email: " />
+					        <p:outputLabel value="#{employeeBean.selectedEmployee.email}"/>
+					        <h:outputText value="Cargo: " />
+					        <p:outputLabel value="#{employeeBean.selectedEmployee.jobtitle}"/>
+					        <h:outputText value="Jefe Directo: " />  
+						  	<p:outputLabel value="#{employeeBean.selectedEmployee.reportsto}"/>
+						    <f:facet name="footer">  
+						        <p:commandButton value="Volver" image="back" style="margin:0" action="/xhtml/menu.xhtml"/>  
+						    </f:facet>  
+						</p:panelGrid>  
+
+				
+			</h:form>
+	</ui:define>
+</ui:composition>

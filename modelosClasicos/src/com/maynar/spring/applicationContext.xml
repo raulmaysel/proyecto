@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	default-autowire="byName" default-lazy-init="true"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- ACCESOS AL APLICATIONCONTEXT EN CUALQUIER PUNTO DE LA APLICACION -->
+	<bean id="acceso" class="com.maynar.spring.Acceso_ApplicationContext"
+		scope="singleton" lazy-init="false" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:com/maynar/model/hibernate.cfg.xml">
+		</property>
+	</bean>
+	<bean id="ProductDAO" class="com.maynar.dao.ProductDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OrderdetailDAO" class="com.maynar.dao.OrderdetailDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="emploDao" class="com.maynar.dao.EmployeeDAO" scope="prototype">
+		
+	</bean>
+	<bean id="CustomerDAO" class="com.maynar.dao.CustomerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PurchaseorderDAO"
+		class="com.maynar.dao.PurchaseorderDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PaymentDAO" class="com.maynar.dao.PaymentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ProductlineDAO" class="com.maynar.dao.ProductlineDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OfficeDAO" class="com.maynar.dao.OfficeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+	<!-- ZONA DE FACHADAS -->
+	<bean id="ges_employee" class="com.maynar.service.Gestion_Empleados" />
+
+	<!-- DEFINICION DE TRANSACCIONES EN HIBERNATE -->
+	<!-- GESTOR TRANSACCIONAL -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager" />
+	<!-- DEFINICION DE LOS PUNTOS DE CORTE (QUE METODOS SE INTERCEPTAN) -->
+	<aop:config>
+		<aop:pointcut
+			expression="execution (* com.maynar.service.Gestion_Empleados.*_Employee (..))"
+			id="puntos_corteusuario" />
+		<aop:advisor advice-ref="reglas_transaccionusuario"
+			pointcut-ref="puntos_corteusuario" />
+	</aop:config>
+	<!-- DEFINICION DE REGLAS DE TRANSACCION (QUE REGLAS SE APLICAN A LOS METODOS) -->
+	<tx:advice id="reglas_transaccionusuario">
+		<tx:attributes>
+			<tx:method name="*_Employee" />
+		</tx:attributes>
+	</tx:advice>
+
+	
+</beans>

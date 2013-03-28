@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.back']}" action="/jsf/purchaseorder/listPurchaseorders.xhtml"/>
+		
+			<p:panel header="#{purchaseordermsgs['purchaseorder.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.purchaseordernumber.title']}:*" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.purchaseordernumber}"/>
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.orderdate.title']}:" />
+							<p:calendar id="purchaseorder_orderdate" value="#{PurchaseorderComponent.purchaseorder.orderdate}" required="false"  converter="primefacesCalendarConverter" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.requireddate.title']}:" />
+							<p:calendar id="purchaseorder_requireddate" value="#{PurchaseorderComponent.purchaseorder.requireddate}" required="false"  converter="primefacesCalendarConverter" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.shippeddate.title']}:" />
+							<p:calendar id="purchaseorder_shippeddate" value="#{PurchaseorderComponent.purchaseorder.shippeddate}" required="false"  converter="primefacesCalendarConverter" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.status.title']}:" />
+							<h:inputText id="purchaseorder_status" value="#{PurchaseorderComponent.purchaseorder.status}" required="false" label="purchaseorder_status" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.comments.title']}:" />
+							<h:inputText id="purchaseorder_comments" value="#{PurchaseorderComponent.purchaseorder.comments}" required="false" label="purchaseorder_comments" />
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.customernumber.title']}:" />
+							<h:inputText id="purchaseorder_customernumber" value="#{PurchaseorderComponent.purchaseorder.customernumber}" required="false" label="purchaseorder_customernumber" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.save']}" action="#{PurchaseorderComponent.savePurchaseorder(PurchaseorderComponent.purchaseorder)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

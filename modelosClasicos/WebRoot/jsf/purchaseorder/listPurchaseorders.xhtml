@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Manage #{purchaseordermsgs['purchaseorder.title']}s</h1>
+		
+		<h:form>	
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.new']}" action="#{PurchaseorderComponent.newPurchaseorder()}"/>
+			<p:dataTable id="dta" value="#{PurchaseorderComponent.listPurchaseorders()}"  var="current" rows="15" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{PurchaseorderComponent.selectPurchaseorder(current.purchaseordernumber)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{PurchaseorderComponent.editPurchaseorder(current.purchaseordernumber)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{PurchaseorderComponent.confirmDeletePurchaseorder(current.purchaseordernumber)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.purchaseordernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.purchaseordernumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.orderdate.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.orderdate}"  converter="dateConverterForCalendar" />
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.requireddate.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.requireddate}"  converter="dateConverterForCalendar" />
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.shippeddate.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.shippeddate}"  converter="dateConverterForCalendar" />
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.status.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.status}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.comments.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.comments}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{purchaseordermsgs['purchaseorder.customernumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.customernumber}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

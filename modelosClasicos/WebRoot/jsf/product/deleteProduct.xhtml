@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{productmsgs['navigation.back']}" action="/jsf/product/listProducts.xhtml"/>
+		
+			<p:panel header="#{productmsgs['product.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{productmsgs['product.productcode.title']}:" />
+							<h:outputText value="#{ProductComponent.product.productcode}"/>
+					<h:outputText value="#{productmsgs['product.productname.title']}:" />
+							<h:outputText value="#{ProductComponent.product.productname}"/>
+					<h:outputText value="#{productmsgs['product.productline.title']}:" />
+							<h:outputText value="#{ProductComponent.product.productline}"/>
+					<h:outputText value="#{productmsgs['product.productscale.title']}:" />
+							<h:outputText value="#{ProductComponent.product.productscale}"/>
+					<h:outputText value="#{productmsgs['product.productvendor.title']}:" />
+							<h:outputText value="#{ProductComponent.product.productvendor}"/>
+					<h:outputText value="#{productmsgs['product.productdescription.title']}:" />
+							<h:outputText value="#{ProductComponent.product.productdescription}"/>
+					<h:outputText value="#{productmsgs['product.quantityinstock.title']}:" />
+							<h:outputText value="#{ProductComponent.product.quantityinstock}"/>
+					<h:outputText value="#{productmsgs['product.buyprice.title']}:" />
+							<h:outputText value="#{ProductComponent.product.buyprice}"/>
+					<h:outputText value="#{productmsgs['product.msrp.title']}:" />
+							<h:outputText value="#{ProductComponent.product.msrp}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{productmsgs['navigation.delete']}" action="#{ProductComponent.deleteProduct(ProductComponent.product.productcode)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

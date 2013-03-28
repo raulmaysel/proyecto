@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.back']}" action="/jsf/purchaseorder/listPurchaseorders.xhtml"/>
+		
+			<p:panel header="#{purchaseordermsgs['purchaseorder.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.purchaseordernumber.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.purchaseordernumber}"/>
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.orderdate.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.orderdate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.requireddate.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.requireddate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.shippeddate.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.shippeddate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.status.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.status}"/>
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.comments.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.comments}"/>
+					<h:outputText value="#{purchaseordermsgs['purchaseorder.customernumber.title']}:" />
+							<h:outputText value="#{PurchaseorderComponent.purchaseorder.customernumber}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{purchaseordermsgs['navigation.delete']}" action="#{PurchaseorderComponent.deletePurchaseorder(PurchaseorderComponent.purchaseorder.purchaseordernumber)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

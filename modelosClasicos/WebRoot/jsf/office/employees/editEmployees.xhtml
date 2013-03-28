@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{officemsgs['navigation.back']}" action="/jsf/office/viewOffice.xhtml"/>
+		
+			<p:panel header="#{officemsgs['employee.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{officemsgs['employee.employeenumber.title']}:*" />
+							<h:outputText value="#{OfficeComponent.employees.employeenumber}"/>
+					<h:outputText value="#{officemsgs['employee.lastname.title']}:" />
+							<h:inputText id="office_lastname" value="#{OfficeComponent.employees.lastname}" required="false" label="office_lastname" />
+					<h:outputText value="#{officemsgs['employee.firstname.title']}:" />
+							<h:inputText id="office_firstname" value="#{OfficeComponent.employees.firstname}" required="false" label="office_firstname" />
+					<h:outputText value="#{officemsgs['employee.extension.title']}:" />
+							<h:inputText id="office_extension" value="#{OfficeComponent.employees.extension}" required="false" label="office_extension" />
+					<h:outputText value="#{officemsgs['employee.email.title']}:" />
+							<h:inputText id="office_email" value="#{OfficeComponent.employees.email}" required="false" label="office_email" />
+					<h:outputText value="#{officemsgs['employee.reportsto.title']}:" />
+							<h:inputText id="office_reportsto" value="#{OfficeComponent.employees.reportsto}" required="false" label="office_reportsto" />
+					<h:outputText value="#{officemsgs['employee.jobtitle.title']}:" />
+							<h:inputText id="office_jobtitle" value="#{OfficeComponent.employees.jobtitle}" required="false" label="office_jobtitle" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{officemsgs['navigation.save']}" action="#{OfficeComponent.saveOfficeEmployees(OfficeComponent.office.officecode, OfficeComponent.employees)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

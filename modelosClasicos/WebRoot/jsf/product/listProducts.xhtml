@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Manage #{productmsgs['product.title']}s</h1>
+		
+		<h:form>	
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{productmsgs['navigation.new']}" action="#{ProductComponent.newProduct()}"/>
+			<p:dataTable id="dta" value="#{ProductComponent.listProducts()}"  var="current" rows="15" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{ProductComponent.selectProduct(current.productcode)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{ProductComponent.editProduct(current.productcode)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{ProductComponent.confirmDeleteProduct(current.productcode)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.productcode.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productcode}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.productname.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productname}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.productline.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productline}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.productscale.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productscale}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.productvendor.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productvendor}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.productdescription.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.productdescription}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.quantityinstock.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.quantityinstock}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.buyprice.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.buyprice}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{productmsgs['product.msrp.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.msrp}"/>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

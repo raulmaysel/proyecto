@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{customermsgs['navigation.back']}" action="/jsf/customer/viewCustomer.xhtml"/>
+		
+			<p:panel header="#{customermsgs['payment.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{customermsgs['payment.customernumber.title']}:" />
+							<h:outputText value="#{CustomerComponent.payments.customernumber}"/>
+					<h:outputText value="#{customermsgs['payment.checknumber.title']}:" />
+							<h:outputText value="#{CustomerComponent.payments.checknumber}"/>
+					<h:outputText value="#{customermsgs['payment.paymentdate.title']}:" />
+							<h:outputText value="#{CustomerComponent.payments.paymentdate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{customermsgs['payment.amount.title']}:" />
+							<h:outputText value="#{CustomerComponent.payments.amount}"/>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

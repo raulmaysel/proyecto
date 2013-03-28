@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{officemsgs['navigation.back']}" action="/jsf/office/listOffices.xhtml"/>
+		
+			<p:panel header="#{officemsgs['office.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{officemsgs['office.officecode.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.officecode}"/>
+					<h:outputText value="#{officemsgs['office.city.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.city}"/>
+					<h:outputText value="#{officemsgs['office.phone.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.phone}"/>
+					<h:outputText value="#{officemsgs['office.addressline1.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.addressline1}"/>
+					<h:outputText value="#{officemsgs['office.addressline2.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.addressline2}"/>
+					<h:outputText value="#{officemsgs['office.state.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.state}"/>
+					<h:outputText value="#{officemsgs['office.country.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.country}"/>
+					<h:outputText value="#{officemsgs['office.postalcode.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.postalcode}"/>
+					<h:outputText value="#{officemsgs['office.territory.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.territory}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{officemsgs['navigation.delete']}" action="#{OfficeComponent.deleteOffice(OfficeComponent.office.officecode)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

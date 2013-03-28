@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <style type="text/css">
+        body.ui-layout-container { background-color: cadetblue;}
+    </style>
+</h:head>
+<h:body>
+    <p:layout fullPage="true" resizeTitle="resize">
+        <p:layoutUnit position="north" id="north" resizable="false" size ="75">
+            <ui:include src="header.xhtml" />
+        </p:layoutUnit>
+
+        <p:layoutUnit position="west" id="west" resizable="false" style="height:580px;overflow:hidden;" size="180">
+            <ui:include src="menu.xhtml" />
+        </p:layoutUnit>
+
+        <**p:layoutUnit styleClass="layoutUnitCenter" position="center">
+                 !!Here I insert the page which contains the dock
+                <ui:insert name="content" />
+        </p:layoutUnit>**
+
+        <p:layoutUnit position="south" resizable="true" id="south" size="40">
+            <ui:include src="footer.xhtml" />
+        </p:layoutUnit>
+
+    </p:layout>
+</h:body>
+</html>

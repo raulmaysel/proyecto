@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{officemsgs['navigation.back']}" action="/jsf/office/listOffices.xhtml"/>
+		
+			<p:panel header="#{officemsgs['office.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{officemsgs['office.officecode.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.officecode}"/>
+						<h:outputText value="#{officemsgs['office.city.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.city}"/>
+						<h:outputText value="#{officemsgs['office.phone.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.phone}"/>
+						<h:outputText value="#{officemsgs['office.addressline1.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.addressline1}"/>
+						<h:outputText value="#{officemsgs['office.addressline2.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.addressline2}"/>
+						<h:outputText value="#{officemsgs['office.state.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.state}"/>
+						<h:outputText value="#{officemsgs['office.country.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.country}"/>
+						<h:outputText value="#{officemsgs['office.postalcode.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.postalcode}"/>
+						<h:outputText value="#{officemsgs['office.territory.title']}:" />
+							<h:outputText value="#{OfficeComponent.office.territory}"/>
+				</h:panelGrid>
+			</p:panel>
+
+			<p:panel header="#{officemsgs['employee.title']} Details" style="margin-top:10px">
+			<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{officemsgs['navigation.new']}" action="#{OfficeComponent.newOfficeEmployees(OfficeComponent.office.officecode)}"/>
+			<p:dataTable id="employees" value="#{OfficeComponent.listOfficeEmployees(OfficeComponent.office.officecode)}"  var="current" rows="10" paginator="true" paginatorPosition="bottom">
+				<p:column>
+					<h:commandLink includeViewParams="true" action="#{OfficeComponent.selectOfficeEmployees(OfficeComponent.office.officecode, current.employeenumber)}" >
+						<h:graphicImage value="/images/icons/view.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{OfficeComponent.editOfficeEmployees(OfficeComponent.office.officecode, current.employeenumber)}" >
+						<h:graphicImage value="/images/icons/edit.gif" style="border:0;"/>
+					</h:commandLink>
+					<h:commandLink includeViewParams="true" action="#{OfficeComponent.confirmDeleteOfficeEmployees(OfficeComponent.office.officecode, current.employeenumber)}" >
+						<h:graphicImage value="/images/icons/delete.gif" style="border:0;"/>
+					</h:commandLink>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.employeenumber.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.employeenumber}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.lastname.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.lastname}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.firstname.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.firstname}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.extension.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.extension}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.email.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.email}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.reportsto.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.reportsto}"/>
+				</p:column>
+				<p:column> 
+					<f:facet name="header">
+						<h:outputText value="#{officemsgs['employee.jobtitle.title']}" />
+					</f:facet>
+							<h:outputText value="#{current.jobtitle}"/>
+				</p:column>
+			</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

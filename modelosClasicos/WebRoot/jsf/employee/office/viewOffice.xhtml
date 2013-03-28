@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/jsf/employee/viewEmployee.xhtml"/>
+		
+			<p:panel header="#{employeemsgs['office.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{employeemsgs['office.officecode.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.officecode}"/>
+					<h:outputText value="#{employeemsgs['office.city.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.city}"/>
+					<h:outputText value="#{employeemsgs['office.phone.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.phone}"/>
+					<h:outputText value="#{employeemsgs['office.addressline1.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.addressline1}"/>
+					<h:outputText value="#{employeemsgs['office.addressline2.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.addressline2}"/>
+					<h:outputText value="#{employeemsgs['office.state.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.state}"/>
+					<h:outputText value="#{employeemsgs['office.country.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.country}"/>
+					<h:outputText value="#{employeemsgs['office.postalcode.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.postalcode}"/>
+					<h:outputText value="#{employeemsgs['office.territory.title']}:" />
+							<h:outputText value="#{EmployeeComponent.office.territory}"/>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

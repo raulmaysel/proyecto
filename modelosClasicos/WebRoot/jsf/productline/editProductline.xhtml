@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{productlinemsgs['navigation.back']}" action="/jsf/productline/listProductlines.xhtml"/>
+		
+			<p:panel header="#{productlinemsgs['productline.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{productlinemsgs['productline.productlinefield.title']}:*" />
+							<h:outputText value="#{ProductlineComponent.productline.productlineField}"/>
+						<h:outputText value="#{productlinemsgs['productline.textdescription.title']}:" />
+							<h:inputText id="productline_textdescription" value="#{ProductlineComponent.productline.textdescription}" required="false" label="productline_textdescription" />
+						<h:outputText value="#{productlinemsgs['productline.htmldescription.title']}:" />
+							<h:inputText id="productline_htmldescription" value="#{ProductlineComponent.productline.htmldescription}" required="false" label="productline_htmldescription" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{productlinemsgs['navigation.save']}" action="#{ProductlineComponent.saveProductline(ProductlineComponent.productline)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

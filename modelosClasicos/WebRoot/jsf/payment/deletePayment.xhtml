@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{paymentmsgs['navigation.back']}" action="/jsf/payment/listPayments.xhtml"/>
+		
+			<p:panel header="#{paymentmsgs['payment.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+					<h:outputText value="#{paymentmsgs['payment.customernumber.title']}:" />
+							<h:outputText value="#{PaymentComponent.payment.customernumber}"/>
+					<h:outputText value="#{paymentmsgs['payment.checknumber.title']}:" />
+							<h:outputText value="#{PaymentComponent.payment.checknumber}"/>
+					<h:outputText value="#{paymentmsgs['payment.paymentdate.title']}:" />
+							<h:outputText value="#{PaymentComponent.payment.paymentdate}"  converter="dateConverterForCalendar" />
+					<h:outputText value="#{paymentmsgs['payment.amount.title']}:" />
+							<h:outputText value="#{PaymentComponent.payment.amount}"/>
+         			<h:panelGroup>
+         				<p:commandButton image="delete" ajax="false" style="margin-right:20px;" value="#{paymentmsgs['navigation.delete']}" action="#{PaymentComponent.deletePayment(PaymentComponent.payment.customernumber, PaymentComponent.payment.checknumber)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{customermsgs['navigation.back']}" action="/jsf/customer/listCustomers.xhtml"/>
+		
+			<p:panel header="#{customermsgs['customer.title']} Details" style="margin-top:10px">
+				<p:messages />
+				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
+						<h:outputText value="#{customermsgs['customer.customernumber.title']}:*" />
+							<h:outputText value="#{CustomerComponent.customer.customernumber}"/>
+						<h:outputText value="#{customermsgs['customer.customername.title']}:" />
+							<h:inputText id="customer_customername" value="#{CustomerComponent.customer.customername}" required="false" label="customer_customername" />
+						<h:outputText value="#{customermsgs['customer.contactlastname.title']}:" />
+							<h:inputText id="customer_contactlastname" value="#{CustomerComponent.customer.contactlastname}" required="false" label="customer_contactlastname" />
+						<h:outputText value="#{customermsgs['customer.contactfirstname.title']}:" />
+							<h:inputText id="customer_contactfirstname" value="#{CustomerComponent.customer.contactfirstname}" required="false" label="customer_contactfirstname" />
+						<h:outputText value="#{customermsgs['customer.phone.title']}:" />
+							<h:inputText id="customer_phone" value="#{CustomerComponent.customer.phone}" required="false" label="customer_phone" />
+						<h:outputText value="#{customermsgs['customer.addressline1.title']}:" />
+							<h:inputText id="customer_addressline1" value="#{CustomerComponent.customer.addressline1}" required="false" label="customer_addressline1" />
+						<h:outputText value="#{customermsgs['customer.addressline2.title']}:" />
+							<h:inputText id="customer_addressline2" value="#{CustomerComponent.customer.addressline2}" required="false" label="customer_addressline2" />
+						<h:outputText value="#{customermsgs['customer.city.title']}:" />
+							<h:inputText id="customer_city" value="#{CustomerComponent.customer.city}" required="false" label="customer_city" />
+						<h:outputText value="#{customermsgs['customer.state.title']}:" />
+							<h:inputText id="customer_state" value="#{CustomerComponent.customer.state}" required="false" label="customer_state" />
+						<h:outputText value="#{customermsgs['customer.postalcode.title']}:" />
+							<h:inputText id="customer_postalcode" value="#{CustomerComponent.customer.postalcode}" required="false" label="customer_postalcode" />
+						<h:outputText value="#{customermsgs['customer.country.title']}:" />
+							<h:inputText id="customer_country" value="#{CustomerComponent.customer.country}" required="false" label="customer_country" />
+						<h:outputText value="#{customermsgs['customer.salesrepemployeenumber.title']}:" />
+							<h:inputText id="customer_salesrepemployeenumber" value="#{CustomerComponent.customer.salesrepemployeenumber}" required="false" label="customer_salesrepemployeenumber" />
+						<h:outputText value="#{customermsgs['customer.creditlimit.title']}:" />
+							<h:inputText id="customer_creditlimit" value="#{CustomerComponent.customer.creditlimit}" required="false" label="customer_creditlimit" />
+         			<h:panelGroup>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{customermsgs['navigation.save']}" action="#{CustomerComponent.saveCustomer(CustomerComponent.customer)}"/>
+         			</h:panelGroup>
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

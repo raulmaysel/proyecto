@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/jsf/template.xhtml">
+
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:dataTable var="employee" value="#{employeeBean.selectedEmployee}" rowKey="#{employee.employeenumber}" paginator="true" rows="10"  
+				                selection="#{tableBean.selectedEmployee}" selectionMode="single" filteredValue="#{tableBean.filteredCars}" id="employeeTable">  
+				  
+				        <p:ajax event="rowSelect" update=":form" />  
+				  
+				        <f:facet name="header">  
+				            List of Employee  
+				        </f:facet>  
+				  
+				        <p:column headerText="Id" sortBy="#{employee.employeenumber}" filterBy="#{employee.employeenumber}" id="number">  
+				            #{employee.employeenumber}  
+				        </p:column>  
+				        
+				        <p:column headerText="Nombre" sortBy="#{employee.firstname}" filterBy="#{employee.firstname}" id="name">  
+				            #{employee.firstname}  
+				        </p:column> 
+				        <p:column headerText="Apellido" sortBy="#{employee.lastname}" filterBy="#{employee.lastname}" id="lastname">  
+				            #{employee.lastname}  
+				        </p:column> 
+				     
+				        <p:column headerText="Oficina" sortBy="#{employee.office.officecode}" filterBy="#{employee.office.officecode}" id="office">  
+				            #{employee.office.officecode}  
+				        </p:column>
+				       
+				        <p:column headerText="Extension" sortBy="#{employee.extension}" filterBy="#{employee.extension}" id="extension">  
+				            #{employee.extension}  
+				        </p:column> 
+				  		 <p:column headerText="E-mail" sortBy="#{employee.email}" filterBy="#{employee.email}" id="email">  
+				            #{employee.email}  
+				        </p:column> 
+				         <p:column headerText="Jefe Directo" sortBy="#{employee.reportsto}" filterBy="#{employee.reportsto}" id="jefe">  
+				            #{employee.reportsto}  
+				        </p:column> 
+				        <p:column headerText="Titulo" sortBy="#{employee.jobtitle}" filterBy="#{employee.jobtitle}" id="titulo">  
+				            #{employee.jobtitle}  
+				        </p:column> 
+				          
+				         
+	  
+	    		</p:dataTable>  
+		</h:form>
+	</ui:define>
+</ui:composition>
