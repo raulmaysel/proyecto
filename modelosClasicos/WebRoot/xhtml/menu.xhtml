@@ -9,14 +9,14 @@
 	</ui:define>
 	<ui:define name="content">
 
-	      <h:form id="formMenu" >  
+	      <h:form id="formMenu" prependId="true" >  
 		  		
-		  	<h:outputText value="Stateful Switcher:" /> 
-	        <p:themeSwitcher value="redmond" style="width:165px" effect="fade" id="statefulSwitcher">
-	            <f:selectItem itemLabel="Choose Theme" itemValue="" />
-	            <f:selectItems value="#{themeSwitcherBean.themes}" />
-	            <p:ajax listener="#{themeSwitcherBean.saveTheme}" />
-	        </p:themeSwitcher>
+<!-- 		  	<h:outputText value="Stateful Switcher:" />  -->
+<!-- 	        <p:themeSwitcher value="redmond" style="width:165px" effect="fade" id="statefulSwitcher"> -->
+<!-- 	            <f:selectItem itemLabel="Choose Theme" itemValue="" /> -->
+<!-- 	            <f:selectItems value="#{themeSwitcherBean.themes}" /> -->
+<!-- 	            <p:ajax listener="#{themeSwitcherBean.saveTheme}" /> -->
+<!-- 	        </p:themeSwitcher> -->
 		  	<p:panelGrid id="panelBotones" columns="2" style="hidden">
 		  		<p:commandButton id="carBtn" value="Consultar Empleados" type="button" icon="ui-icon-search" />   
   
@@ -53,7 +53,7 @@
 						                header="Eliminar Empleado" severity="alert" widgetVar="dlgEliminar">  
 						                  
 						        <p:commandButton id="confirm" value="Sí" update="employeeTable,:messages" oncomplete="dlgEliminar.hide()"  
-						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employee)}"/>  
+						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employeeBean.selectedEmployee)}" ajax="true"/>  
 						        <p:commandButton id="decline" value="No" onclick="dlgEliminar.hide()" type="button" />   
 						                  
 						    </p:confirmDialog>  

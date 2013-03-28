@@ -57,6 +57,11 @@
 		</property>
 	</bean>
 	
+	<bean id="employeeBean" class="com.maynar.managedbeans.EmployeeBean" scope="session"/>
+	<bean id="menuBean" class="com.maynar.managedbeans.MenuBean" scope="session"/>
+	<bean id="terminalController" class="com.maynar.managedbeans.TerminalBean" scope="session"/>
+	<bean id="camView" class="com.maynar.managedbeans.CamBean" scope="session"/>
+	<bean id="loginBean" class="com.maynar.managedbeans.LoginBean" scope="session"/>
 	
 	<!-- ZONA DE FACHADAS -->
 	<bean id="ges_employee" class="com.maynar.service.Gestion_Empleados" />

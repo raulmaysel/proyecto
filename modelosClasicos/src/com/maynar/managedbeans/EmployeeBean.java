@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;  
 
 import com.maynar.util.Accesos_Contextos;
+import com.maynar.util.AjaxMessages;
 import com.maynar.model.Employee;
 import com.maynar.model.Office;
 import com.maynar.service.IGestion_Empleados;
@@ -28,8 +29,8 @@ public class EmployeeBean implements Serializable {
 	private final static String OK = "OK";
 //	private final static String ERROR = "ERROR";
 	private final static String VIEW_EMPLOYEE = "/xhtml/employee/viewEmployee.xhtml";
-	
-    
+	private final static String SHOW_MENU = "/xhtml/menu.xhtml";
+	private final static String NEW_EMPLOYEE = "/xhtml/employee/createEmployee.xhtml";
     private IGestion_Empleados ges_employee;
     private List<Employee> lista_empleados;
     private Employee selectedEmployee;
@@ -67,20 +68,21 @@ public class EmployeeBean implements Serializable {
     public String nuevoEmpleado() {
 		selectedEmployee = new Employee();
 
-		return "/xhtml/employee/createEmployee.xhtml";
+		return NEW_EMPLOYEE;
 	}
     
     public String saveEmployee() {
 		ges_employee.alta_Employee(selectedEmployee);
 		consultarEmpleados();
-		return "/xhtml/menu.xhtml";
+		return SHOW_MENU;
 	}
     
     public void removeItem(Employee employee){
     	
     	lista_empleados.remove(employee);
     	ges_employee.baja_Employee(employee);
-    	
+    	AjaxMessages.addMessage("Empleado Eliminado");
+    	consultarEmpleados();
     	
     	System.out.println("Empleado Eliminado");
     	

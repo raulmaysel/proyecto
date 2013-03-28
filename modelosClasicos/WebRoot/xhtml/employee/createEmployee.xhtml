@@ -27,8 +27,8 @@
 						<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
 							<h:inputText id="employee_jobtitle" value="#{employeeBean.selectedEmployee.jobtitle}" required="false" label="employee_jobtitle" />
          			<h:panelGroup>
-         				<p:commandButton image="save" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
-         									action="#{employeeBean.saveEmployee}"/>
+         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
+         									action="#{employeeBean.saveEmployee}" update="formMenu:employeeTable,:messages"/>
          			</h:panelGroup>
 				</h:panelGrid>
 			</p:panel>

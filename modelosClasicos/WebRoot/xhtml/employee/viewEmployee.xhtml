@@ -25,6 +25,18 @@
 							<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
 								<h:outputText value="#{employeeBean.selectedEmployee.jobtitle}"/>
 					</h:panelGrid>
+					<h:panelGrid columns="2" styleClass="grid" columnClasses="label,value">
+						<p:commandButton icon="edit" style="margin-right:20px;" value="#{employeemsgs['navigation.edit']}" action="#{employeeBean.editEmployee(employeeBean.selectedEmployee)}"/>
+						<p:commandButton icon="delete" style="margin-right:20px;" value="#{employeemsgs['navigation.delete']}" onclick="dlgEliminar.show()"/>
+					</h:panelGrid>
+					<p:confirmDialog id="confirmDialog" message="¿Está seguro de eliminar el empleado seleccionado?"  
+						                header="Eliminar Empleado" severity="alert" widgetVar="dlgEliminar">  
+						                  
+						        <p:commandButton id="confirm" value="Sí" update=":messages" oncomplete="dlgEliminar.hide()"  
+						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(selectedEmployee)}" ajax="false"/>  
+						        <p:commandButton id="decline" value="No" onclick="dlgEliminar.hide()" type="button" />   
+						                  
+					</p:confirmDialog>  
 				</p:panel>
 	
 				<p:panel header="#{employeemsgs['office.title']} Details" style="margin-top:10px">
@@ -46,7 +58,10 @@
 				<br/>
 				<br/>
 				<br/>
-				        <p:panelGrid id="panelVistaEmpleados" columns="2">  
+				<p:panel>
+					<p:commandButton value="Volver" image="back" style="margin:0" action="/xhtml/menu.xhtml" ajax="false"/>
+				</p:panel>
+				        <!-- <p:panelGrid id="panelVistaEmpleados" columns="2">  
 						    <f:facet name="header">  
 						        Datos del Empleado  
 						    </f:facet>  
@@ -71,7 +86,7 @@
 						    <f:facet name="footer">  
 						        <p:commandButton value="Volver" image="back" style="margin:0" action="/xhtml/menu.xhtml"/>  
 						    </f:facet>  
-						</p:panelGrid>  
+						</p:panelGrid>   -->
 
 				
 			</h:form>

@@ -2,6 +2,8 @@
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <!-- 
+ 
  <managed-bean>
   <managed-bean-name>menuBean</managed-bean-name>
   <managed-bean-class>com.maynar.managedbeans.MenuBean</managed-bean-class>
@@ -17,11 +19,14 @@
   <managed-bean-class>com.maynar.managedbeans.TerminalBean</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+
  <managed-bean>
   <managed-bean-name>employeeBean</managed-bean-name>
   <managed-bean-class>com.maynar.managedbeans.EmployeeBean</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+ 
+  -->
  <managed-bean>
   <managed-bean-name>themeSwitcherBean</managed-bean-name>
   <managed-bean-class>com.maynar.managedbeans.ThemeSwitcherBean</managed-bean-class>
@@ -43,14 +48,14 @@
    <to-view-id>/xhtml/cam.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>/xhtml/employee/saveEmployee.xhtml</from-outcome>
+   <from-outcome>NEW_EMPLOYEE</from-outcome>
    <to-view-id>/xhtml/employee/createEmployee.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/xhtml/employee/viewEmployee.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>/xhtml/menu.xhtml</from-outcome>
+   <from-outcome>SHOW_MENU</from-outcome>
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
@@ -65,48 +70,46 @@
    <to-view-id>/xhtml/cam.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- 
  <navigation-rule>
- <from-view-id>/xhtml/employee/*</from-view-id>
+  <from-view-id>/xhtml/employee/*</from-view-id>
   <navigation-case>
-   <from-outcome>/xhtml/menu.xhtml</from-outcome>
+   <from-outcome>SHOW_MENU</from-outcome>
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- 
- <application>
-  <resource-bundle>
-   <base-name>bundles.customer-resources</base-name>
-   <var>customermsgs</var>
-  </resource-bundle>
-  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-  <resource-bundle>
-   <base-name>bundles.productline-resources</base-name>
-   <var>productlinemsgs</var>
-  </resource-bundle>
-  <resource-bundle>
-   <base-name>bundles.product-resources</base-name>
-   <var>productmsgs</var>
-  </resource-bundle>
-  <resource-bundle>
-   <base-name>bundles.orderdetail-resources</base-name>
-   <var>orderdetailmsgs</var>
-  </resource-bundle>
-  <resource-bundle>
-   <base-name>bundles.office-resources</base-name>
-   <var>officemsgs</var>
-  </resource-bundle>
-  <resource-bundle>
-   <base-name>bundles.employee-resources</base-name>
-   <var>employeemsgs</var>
-  </resource-bundle>
-  <resource-bundle>
-   <base-name>bundles.payment-resources</base-name>
-   <var>paymentmsgs</var>
-  </resource-bundle>
-  <resource-bundle>
-   <base-name>bundles.purchaseorder-resources</base-name>
-   <var>purchaseordermsgs</var>
-  </resource-bundle>
- </application>
+	 <application>
+			<resource-bundle>
+	   			<base-name>bundles.customer-resources</base-name>
+	   			<var>customermsgs</var>
+			</resource-bundle>	
+			<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+			<resource-bundle>
+	   			<base-name>bundles.productline-resources</base-name>
+	   			<var>productlinemsgs</var>
+			</resource-bundle>
+			<resource-bundle>
+	   			<base-name>bundles.product-resources</base-name>
+	   			<var>productmsgs</var>
+			</resource-bundle>
+			<resource-bundle>
+	   			<base-name>bundles.orderdetail-resources</base-name>
+	   			<var>orderdetailmsgs</var>
+			</resource-bundle>
+			<resource-bundle>
+	   			<base-name>bundles.office-resources</base-name>
+	   			<var>officemsgs</var>
+			</resource-bundle>
+			<resource-bundle>
+	   			<base-name>bundles.employee-resources</base-name>
+	   			<var>employeemsgs</var>
+			</resource-bundle>
+			<resource-bundle>
+	   			<base-name>bundles.payment-resources</base-name>
+	   			<var>paymentmsgs</var>
+			</resource-bundle>
+			<resource-bundle>
+	   			<base-name>bundles.purchaseorder-resources</base-name>
+	   			<var>purchaseordermsgs</var>
+			</resource-bundle>
+			</application>
 </faces-config>
