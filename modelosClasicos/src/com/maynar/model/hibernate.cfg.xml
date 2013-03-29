@@ -28,6 +28,7 @@
 		<mapping resource="com/maynar/model/Payment.hbm.xml" />
 		<mapping resource="com/maynar/model/Productline.hbm.xml" />
 		<mapping resource="com/maynar/model/Office.hbm.xml" />
+		<mapping resource="com/maynar/model/Usuario.hbm.xml" />
 
 	</session-factory>
 

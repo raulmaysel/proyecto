@@ -6,28 +6,71 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en"
 	xmlns:p="http://primefaces.org/ui">
-	<head>
+	<h:head>
 		
-	</head>
-	<h:body style="text-align:center">
-	  <p:growl id="mensajes" showDetail="true" life="2000" />
-	  <h:form>
-	    <p:panel header="Login" style="width:300px">
-	      <h:panelGrid columns="2" cellpadding="5">
-	        <h:outputLabel for="username" value="Usuario:" />
-	        <p:inputText value="#{loginBean.nombre}" id="username"
-	           required="true" label="username" />
-	        <h:outputLabel for="password" value="Clave:" />
-	        <p:password value="#{loginBean.clave}" id="password" required="true"
-	           label="password" />
-	        <f:facet name="footer">
-	          <p:commandButton id="loginButton" value="Login"
-	             action="#{loginBean.login}" update=":mensajes" ajax="false"
-	          />
-	        </f:facet>
-	      </h:panelGrid>
-	    </p:panel>
-	  </h:form>
+		<link rel="stylesheet" href="css/login/base.css"/>
+		<link rel="stylesheet" href="css/login/skeleton.css"/>
+		<link rel="stylesheet" href="css/login/layout.css"/>
+	
+	</h:head>
+	<h:body>
+	
+
+		<div class="container">
+			
+			<div class="form-bg">
+				
+				<h:form id="loginFrom">
+					<p:growl id="growl" showDetail="false" sticky="true" />
+					<h2>Login</h2>
+					
+			        <p:inputText value="#{loginBean.nombre}" id="username"
+			           required="true" label="username" />
+			        <h:outputLabel for="password" value="Clave:" />
+			        <p:password value="#{loginBean.clave}" id="password" required="true"
+			           label="password" />
+			        
+					<label for="remember">
+					  <input type="checkbox" id="remember" value="remember" />
+					  <span>Remember me on this computer</span>
+					</label>
+					<p:commandButton id="loginButton" value="Login"
+			             action="#{loginBean.login}" update="growl" ajax="false"/>
+				</h:form>
+			</div>
+	
+		
+			<p class="forgot">Forgot your password? <a href="">Click here to reset it.</a></p>
+	
+	
+		</div><!-- container -->
+	
+		
+		
+	<!-- End Document -->
 	</h:body>
+	
+	
+	
+<!-- 	<h:body style="text-align:center"> -->
+<!-- 	  <p:growl id="mensajes" showDetail="true" life="2000" /> -->
+<!-- 	  <h:form> -->
+<!-- 	    <p:panel header="Login" style="width:300px"> -->
+<!-- 	      <h:panelGrid columns="2" cellpadding="5"> -->
+<!-- 	        <h:outputLabel for="username" value="Usuario:" /> -->
+<!-- 	        <p:inputText value="#{loginBean.nombre}" id="username" -->
+<!-- 	           required="true" label="username" /> -->
+<!-- 	        <h:outputLabel for="password" value="Clave:" /> -->
+<!-- 	        <p:password value="#{loginBean.clave}" id="password" required="true" -->
+<!-- 	           label="password" /> -->
+<!-- 	        <f:facet name="footer"> -->
+<!-- 	          <p:commandButton id="loginButton" value="Login" -->
+<!-- 	             action="#{loginBean.login}" update=":mensajes" ajax="false" -->
+<!-- 	          /> -->
+<!-- 	        </f:facet> -->
+<!-- 	      </h:panelGrid> -->
+<!-- 	    </p:panel> -->
+<!-- 	  </h:form> -->
+<!-- 	</h:body> -->
 </html>
 

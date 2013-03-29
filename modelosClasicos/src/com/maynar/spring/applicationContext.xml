@@ -56,7 +56,9 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="usu_DAO" class="com.maynar.dao.UsuarioDAO" scope="prototype"/>
 	
+
 	<bean id="employeeBean" class="com.maynar.managedbeans.EmployeeBean" scope="session"/>
 	<bean id="menuBean" class="com.maynar.managedbeans.MenuBean" scope="session"/>
 	<bean id="terminalController" class="com.maynar.managedbeans.TerminalBean" scope="session"/>
@@ -65,25 +67,40 @@
 	
 	<!-- ZONA DE FACHADAS -->
 	<bean id="ges_employee" class="com.maynar.service.Gestion_Empleados" />
-
+	<bean id="ges_usuarios" class="com.maynar.service.Gestion_Usuarios" scope="prototype"/>
 	<!-- DEFINICION DE TRANSACCIONES EN HIBERNATE -->
 	<!-- GESTOR TRANSACCIONAL -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager" />
 	<!-- DEFINICION DE LOS PUNTOS DE CORTE (QUE METODOS SE INTERCEPTAN) -->
-	<aop:config>
+	<aop:config >
 		<aop:pointcut
 			expression="execution (* com.maynar.service.Gestion_Empleados.*_Employee (..))"
+			id="puntos_corteempleado" />
+		<aop:advisor advice-ref="reglas_transaccionempleado"
+			pointcut-ref="puntos_corteempleado" />
+	</aop:config>
+	<aop:config>
+	
+		<aop:pointcut
+			expression="execution (* com.maynar.service.Gestion_Usuarios.*Usuario (..))"
 			id="puntos_corteusuario" />
 		<aop:advisor advice-ref="reglas_transaccionusuario"
 			pointcut-ref="puntos_corteusuario" />
+	
 	</aop:config>
 	<!-- DEFINICION DE REGLAS DE TRANSACCION (QUE REGLAS SE APLICAN A LOS METODOS) -->
-	<tx:advice id="reglas_transaccionusuario">
+	<tx:advice id="reglas_transaccionempleado">
 		<tx:attributes>
 			<tx:method name="*_Employee" />
 		</tx:attributes>
 	</tx:advice>
+	<tx:advice id="reglas_transaccionusuario">
+		<tx:attributes>
+			<tx:method name="*Usuario" />
+		</tx:attributes>
+	</tx:advice>
 
+	
 	
 </beans>

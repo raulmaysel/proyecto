@@ -16,12 +16,6 @@
   location="/usr/local/Common/plugins/com.genuitec.eclipse.j2eedt.core_10.5.0.me201207171805/data/libraryset/EE_5/javaee.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-jstl-1.2.jar"
   location="/usr/local/Common/plugins/com.genuitec.eclipse.j2eedt.core_10.5.0.me201207171805/data/libraryset/EE_5/jstl-1.2.jar" model-entity="FileSystemJar"/>
- <file-system NAME="lib-derbyclient.jar"
-  location="/media/raul/D2DA5A78DA5A5935/Users/Raul/Workspaces/MyEclipse for Spring 10/modelosClasicos/WebRoot/WEB-INF/lib/derbyclient.jar" model-entity="FileSystemJar"/>
- <file-system NAME="lib-el-api-2.2.0-SNAPSHOT.jar"
-  location="/media/raul/D2DA5A78DA5A5935/Users/Raul/Workspaces/MyEclipse for Spring 10/modelosClasicos/WebRoot/WEB-INF/lib/el-api-2.2.0-SNAPSHOT.jar" model-entity="FileSystemJar"/>
- <file-system NAME="lib-el-impl-2.2.0-SNAPSHOT.jar"
-  location="/media/raul/D2DA5A78DA5A5935/Users/Raul/Workspaces/MyEclipse for Spring 10/modelosClasicos/WebRoot/WEB-INF/lib/el-impl-2.2.0-SNAPSHOT.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-org.springframework.aop-3.1.1.RELEASE.jar"
   location="/usr/local/MyEclipse for Spring 10/configuration/org.eclipse.osgi/bundles/102/1/.cp/data/3.1/dist/org.springframework.aop-3.1.1.RELEASE.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-org.springframework.asm-3.1.1.RELEASE.jar"
@@ -128,12 +122,19 @@
   location="/usr/local/MyEclipse for Spring 10/configuration/org.eclipse.osgi/bundles/97/1/.cp/myeclipse-data/3.1/lib/dom4j-1.6.1.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-sitemesh-2.4.2.jar"
   location="/usr/local/MyEclipse for Spring 10/configuration/org.eclipse.osgi/bundles/258/1/.cp/lib/sitemesh/2.4.2/sitemesh-2.4.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-derbyclient.jar"
+  location="/home/raul/proyecto_master/com.raul.git.proyecto_master/modelosClasicos/WebRoot/WEB-INF/lib/derbyclient.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-api-2.2.0-SNAPSHOT.jar"
+  location="/home/raul/proyecto_master/com.raul.git.proyecto_master/modelosClasicos/WebRoot/WEB-INF/lib/el-api-2.2.0-SNAPSHOT.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-impl-2.2.0-SNAPSHOT.jar"
+  location="/home/raul/proyecto_master/com.raul.git.proyecto_master/modelosClasicos/WebRoot/WEB-INF/lib/el-impl-2.2.0-SNAPSHOT.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-primefaces-3.5.jar"
-  location="/media/raul/D2DA5A78DA5A5935/Users/Raul/Workspaces/MyEclipse for Spring 10/modelosClasicos/src/com/maynar/jar/primefaces-3.5.jar" model-entity="FileSystemJar"/>
+  location="/home/raul/proyecto_master/com.raul.git.proyecto_master/modelosClasicos/src/com/maynar/jar/primefaces-3.5.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-primefaces-3.5-sources.jar"
-  location="/media/raul/D2DA5A78DA5A5935/Users/Raul/Workspaces/MyEclipse for Spring 10/modelosClasicos/src/com/maynar/jar/primefaces-3.5-sources.jar" model-entity="FileSystemJar"/>
+  location="/home/raul/proyecto_master/com.raul.git.proyecto_master/modelosClasicos/src/com/maynar/jar/primefaces-3.5-sources.jar" model-entity="FileSystemJar"/>
  <file-system NAME="lib-itext-2.1.7 bueno.jar"
-  location="/media/raul/D2DA5A78DA5A5935/Users/Raul/Workspaces/MyEclipse for Spring 10/modelosClasicos/src/com/maynar/jar/itext-2.1.7 bueno.jar" model-entity="FileSystemJar"/>
+  location="/home/raul/proyecto_master/com.raul.git.proyecto_master/modelosClasicos/src/com/maynar/jar/itext-2.1.7 bueno.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="src-1" location="%workspace.home%/../../resources" model-entity="FileSystemFolder"/>
  <web SERVLET_VERSION="2.4" model-entity="JstWeb" model-path="/web.xml">
   <module URI="/WEB-INF/faces-config.xml" model-entity="WebJSFModule"
    model-path="/faces-config.xml" src="src" web-root="WEB-ROOT"/>

@@ -8,6 +8,12 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
+
+import com.maynar.model.Usuario;
+import com.maynar.service.IGestion_Usuarios;
+import com.maynar.spring.Acceso_ApplicationContext;
+import com.maynar.util.AjaxMessages;
+
 public class LoginBean implements Serializable {
 	
   private static final long serialVersionUID = -2152389656664659476L;
@@ -16,6 +22,7 @@ public class LoginBean implements Serializable {
   private boolean logeado = false;
   private static String SHOW_MENU = "/xhtml/menu.xhtml";
   private static String SHOW_LOGIN = "/xhtml/login.xhtml";
+  private IGestion_Usuarios gestion_usuario;
   
   public boolean estaLogeado() {
     return logeado;
@@ -38,16 +45,21 @@ public class LoginBean implements Serializable {
   }
 
   public String login() {
+	
     RequestContext context = RequestContext.getCurrentInstance();
     FacesMessage msg = null;
-    if (nombre != null && nombre.equals("admin") && clave != null
-        && clave.equals("admin")) {
+
+    gestion_usuario = (IGestion_Usuarios) Acceso_ApplicationContext.getBean("ges_usuarios");
+	Usuario usuario = gestion_usuario.consultarporNombre(getNombre());
+    if (nombre != null && nombre.equals(usuario.getNombre()) && clave != null
+        && clave.equals(usuario.getClave())) {
       logeado = true;
       msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nombre);
     } else {
       logeado = false;
       msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
                              "Credenciales no válidas");
+      AjaxMessages.addMessage("Error en el Login");
       return SHOW_LOGIN;
     }
 
@@ -58,10 +70,11 @@ public class LoginBean implements Serializable {
     return SHOW_MENU;
   }
 
-  public void logout() {
+  public String logout() {
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance() 
                                         .getExternalContext().getSession(false);
     session.invalidate();
     logeado = false;
+    return SHOW_LOGIN;
   }
 }
