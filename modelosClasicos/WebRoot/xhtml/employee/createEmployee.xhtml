@@ -6,8 +6,8 @@
 	template="/WEB-INF/jsf/template.xhtml">
 
 	<ui:define name="content">
-		<h:form prependId="false">
-			<p:commandButton image="back" ajax="false" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/xhtml/menu.xhtml"/>
+		<h:form id="newEmpleado">
+			<p:commandButton image="back" ajax="true" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/xhtml/menu.xhtml"/>
 		
 			<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
 				<p:messages />
@@ -27,7 +27,7 @@
 						<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
 							<h:inputText id="employee_jobtitle" value="#{employeeBean.selectedEmployee.jobtitle}" required="false" label="employee_jobtitle" />
          			<h:panelGroup>
-         				<p:commandButton image="save" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
+         				<p:commandButton image="save" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
          									action="#{employeeBean.saveEmployee}" update="formMenu:employeeTable,:messages"/>
          			</h:panelGroup>
 				</h:panelGrid>

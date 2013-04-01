@@ -32,7 +32,7 @@
 			   
 		  	</p:panelGrid>
 		  	
-	  				<p:commandButton image="new" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{employeeBean.nuevoEmpleado}"/>
+	  				<p:commandButton id="nuevoEmpleado" icon="new" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{employeeBean.nuevoEmpleado}"/>
 			        <p:dataTable id="employeeTable" var="employee" value="#{employeeBean.lista_empleados}" rowKey="#{employee.employeenumber}" 
 			        				paginator="true" rows="6"  selection="#{employeeBean.selectedEmployee}" paginatorPosition="bottom" 
 			        				>  
@@ -46,14 +46,14 @@
 				     
 				        <p:column headerText="Operaciones"  id="number" exportable="false">
 				        
-				        	<p:commandButton icon="view" title="Consultar"  ajax="false" update="employeeTable" action="#{employeeBean.viewEmployee(employee.employeenumber)}"/>
+				        	<p:commandButton icon="view" title="Consultar"  ajax="true" update="employeeTable" action="#{employeeBean.viewEmployee(employee.employeenumber)}"/>
 				        	<p:commandButton icon="edit" title="Modificar" update="employeeTable"/>
 				        	<p:commandButton icon="delete" title="Eliminar"  onclick="dlgEliminar.show()" />
 				            <p:confirmDialog id="confirmDialog" message="¿Está seguro de eliminar el empleado seleccionado?"  
 						                header="Eliminar Empleado" severity="alert" widgetVar="dlgEliminar">  
 						                  
 						        <p:commandButton id="confirm" value="Sí" update="employeeTable,:messages" oncomplete="dlgEliminar.hide()"  
-						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employeeBean.selectedEmployee)}" ajax="true"/>  
+						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employeeBean.selectedEmployee)}" ajax="false"/>  
 						        <p:commandButton id="decline" value="No" onclick="dlgEliminar.hide()" type="button" />   
 						                  
 						    </p:confirmDialog>  

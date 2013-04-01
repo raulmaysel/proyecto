@@ -34,8 +34,11 @@
 					  <input type="checkbox" id="remember" value="remember" />
 					  <span>Remember me on this computer</span>
 					</label>
-					<p:commandButton id="loginButton" value="Login"
-			             action="#{loginBean.login}" update="growl" ajax="false"/>
+					<h:panelGroup>
+						<p:commandButton id="loginButton" value="Login"
+			             action="#{loginBean.login}" update="growl" ajax="true"/>
+					</h:panelGroup>
+					
 				</h:form>
 			</div>
 	

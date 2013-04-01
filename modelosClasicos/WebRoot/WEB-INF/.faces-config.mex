@@ -5,21 +5,13 @@
   <JSFFlowResource path="/xhtml/employee/viewEmployee.xhtml" location="440,400" dimension="250,36" />
   <JSFFlowResource path="/xhtml/cam.xhtml" location="355,274" dimension="152,36" />
   <JSFFlowResource path="/xhtml/employee/createEmployee.xhtml" location="620,250" dimension="285,36" />
-  <JSFFlowResource path="/xhtml/*" location="620,150" dimension="93,36" />
-  <JSFFlowResource path="/xhtml/employee/*" location="170,450" dimension="155,36" />
   <JSFFlowResource path="/xhtml/login.xhtml" location="180,20" dimension="155,36" />
+  <JSFFlowResource path="/xhtml/*" location="620,150" dimension="93,36" />
   <JSFFlowNavigationCase id="/xhtml/menu.xhtml,/xhtml/employee/viewEmployee.xhtml,VIEW_EMPLOYEE,&lt;empty&gt;" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="254,176" />
       <AbsolutePoint location="254,418" />
       <AbsolutePoint location="440,418" />
-    </AutomaticBendpoints>
-  </JSFFlowNavigationCase>
-  <JSFFlowNavigationCase id="/xhtml/menu.xhtml,/xhtml/cam.xhtml,gotoCam,&lt;empty&gt;" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="328,158" />
-      <AbsolutePoint location="431,158" />
-      <AbsolutePoint location="431,274" />
     </AutomaticBendpoints>
   </JSFFlowNavigationCase>
   <JSFFlowNavigationCase id="/xhtml/menu.xhtml,/xhtml/employee/createEmployee.xhtml,NEW_EMPLOYEE,&lt;empty&gt;" routingType="0">
@@ -38,30 +30,42 @@
       <Point location="60,80" />
     </Bendpoints>
   </JSFFlowNavigationCase>
-  <JSFFlowNavigationCase id="/xhtml/menu.xhtml,/xhtml/login.xhtml,SHOW_LOGIN,&lt;empty&gt;" routingType="0">
+  <JSFFlowNavigationCase id="/xhtml/login.xhtml,/xhtml/menu.xhtml,SHOW_MENU,&lt;empty&gt;" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="254,158" />
-      <AbsolutePoint location="257,38" />
+      <AbsolutePoint location="239,56" />
+      <AbsolutePoint location="239,140" />
     </AutomaticBendpoints>
   </JSFFlowNavigationCase>
-  <JSFFlowNavigationCase id="/xhtml/employee/viewEmployee.xhtml,/xhtml/menu.xhtml,SHOW_MENU,&lt;empty&gt;" routingType="0">
+  <JSFFlowNavigationCase id="/xhtml/login.xhtml,/xhtml/login.xhtml,SHOW_LOGIN,&lt;empty&gt;" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="565,400" />
-      <AbsolutePoint location="565,173" />
-      <AbsolutePoint location="328,173" />
+      <AbsolutePoint location="257,20" />
+      <AbsolutePoint location="257,-17" />
+      <AbsolutePoint location="810,-17" />
+      <AbsolutePoint location="810,23" />
+      <AbsolutePoint location="335,23" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/xhtml/*,/xhtml/login.xhtml,SHOW_LOGIN,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="681,150" />
+      <AbsolutePoint location="681,38" />
+      <AbsolutePoint location="335,38" />
     </AutomaticBendpoints>
   </JSFFlowNavigationCase>
   <JSFFlowNavigationCase id="/xhtml/*,/xhtml/cam.xhtml,gotoCam,&lt;empty&gt;" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="620,158" />
-      <AbsolutePoint location="446,158" />
-      <AbsolutePoint location="446,274" />
+      <AbsolutePoint location="666,186" />
+      <AbsolutePoint location="666,208" />
+      <AbsolutePoint location="431,208" />
+      <AbsolutePoint location="431,274" />
     </AutomaticBendpoints>
   </JSFFlowNavigationCase>
-  <JSFFlowNavigationCase id="/xhtml/employee/*,/xhtml/menu.xhtml,SHOW_MENU,&lt;empty&gt;" routingType="0">
+  <JSFFlowNavigationCase id="/xhtml/*,/xhtml/menu.xhtml,SHOW_MENU,&lt;empty&gt;" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="239,450" />
-      <AbsolutePoint location="239,176" />
+      <AbsolutePoint location="666,150" />
+      <AbsolutePoint location="666,108" />
+      <AbsolutePoint location="269,108" />
+      <AbsolutePoint location="269,140" />
     </AutomaticBendpoints>
   </JSFFlowNavigationCase>
 </JSFFlowViewLayout>

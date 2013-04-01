@@ -21,7 +21,7 @@ public class LoginBean implements Serializable {
   private String clave;
   private boolean logeado = false;
   private static String SHOW_MENU = "/xhtml/menu.xhtml";
-  private static String SHOW_LOGIN = "/xhtml/login.xhtml";
+  private static String SHOW_LOGIN = "/index.jsp";
   private IGestion_Usuarios gestion_usuario;
   
   public boolean estaLogeado() {

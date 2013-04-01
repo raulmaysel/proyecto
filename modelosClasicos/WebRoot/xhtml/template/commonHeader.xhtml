@@ -30,7 +30,7 @@
 			        </p:submenu> 
 			        
 			         <p:submenu label="Go To WebCam" icon="cam">  
-			            <p:menuitem value="Mostrar Cam" action="gotoCam" ajax="false" icon="cam"/>
+			            <p:menuitem value="Mostrar Cam" action="gotoCam" ajax="true" icon="cam"/>
 			        </p:submenu> 
 			  
 			        
@@ -56,7 +56,7 @@
 			        <f:facet name="options">  
 			        	<p:outputLabel id="saludo" value="Bienvenido, #{loginBean.nombre}  "></p:outputLabel>
 			            <!-- <p:inputText style="margin-right:10px"/> -->  
-			            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" action="#{loginBean.logout}" ajax="false"/>  
+			            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" action="#{loginBean.logout}"/>  
 			        </f:facet>  
 			        
 			        

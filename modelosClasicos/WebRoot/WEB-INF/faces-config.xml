@@ -40,10 +40,6 @@
    <to-view-id>/xhtml/employee/viewEmployee.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>gotoCam</from-outcome>
-   <to-view-id>/xhtml/cam.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
    <from-outcome>NEW_EMPLOYEE</from-outcome>
    <to-view-id>/xhtml/employee/createEmployee.xhtml</to-view-id>
   </navigation-case>
@@ -51,11 +47,8 @@
    <from-outcome>ERROR</from-outcome>
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
   </navigation-case>
-  <navigation-case>
-   <from-outcome>SHOW_LOGIN</from-outcome>
-   <to-view-id>/xhtml/login.xhtml</to-view-id>
-  </navigation-case>
  </navigation-rule>
+ <!-- 
  <navigation-rule>
   <from-view-id>/xhtml/employee/viewEmployee.xhtml</from-view-id>
   <navigation-case>
@@ -63,25 +56,36 @@
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- <navigation-rule>
-  <from-view-id>/xhtml/cam.xhtml</from-view-id>
- </navigation-rule>
+ 
+ 
+  -->
  <navigation-rule>
   <display-name>plantilla</display-name>
   <from-view-id>/xhtml/*</from-view-id>
   <navigation-case>
+   <from-outcome>SHOW_LOGIN</from-outcome>
+   <to-view-id>/xhtml/login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
    <from-outcome>gotoCam</from-outcome>
    <to-view-id>/xhtml/cam.xhtml</to-view-id>
   </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/xhtml/employee/*</from-view-id>
   <navigation-case>
    <from-outcome>SHOW_MENU</from-outcome>
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- 
+ <navigation-rule>
+  <from-view-id>/xhtml/login.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SHOW_MENU</from-outcome>
+   <to-view-id>/xhtml/menu.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>SHOW_LOGIN</from-outcome>
+   <to-view-id>/xhtml/login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
  <application>
   <resource-bundle>
    <base-name>bundles.customer-resources</base-name>
