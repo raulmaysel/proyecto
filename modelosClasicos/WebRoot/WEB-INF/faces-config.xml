@@ -30,7 +30,7 @@
  <managed-bean>
   <managed-bean-name>loginBean</managed-bean-name>
   <managed-bean-class>com.maynar.managedbeans.LoginBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
   <display-name>menu</display-name>
@@ -38,10 +38,12 @@
   <navigation-case>
    <from-outcome>VIEW_EMPLOYEE</from-outcome>
    <to-view-id>/xhtml/employee/viewEmployee.xhtml</to-view-id>
+   <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>NEW_EMPLOYEE</from-outcome>
    <to-view-id>/xhtml/employee/createEmployee.xhtml</to-view-id>
+   <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>ERROR</from-outcome>
@@ -65,6 +67,7 @@
   <navigation-case>
    <from-outcome>SHOW_LOGIN</from-outcome>
    <to-view-id>/xhtml/login.xhtml</to-view-id>
+   <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>gotoCam</from-outcome>
@@ -73,6 +76,7 @@
   <navigation-case>
    <from-outcome>SHOW_MENU</from-outcome>
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
+   <redirect/>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -80,10 +84,19 @@
   <navigation-case>
    <from-outcome>SHOW_MENU</from-outcome>
    <to-view-id>/xhtml/menu.xhtml</to-view-id>
+   <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>SHOW_LOGIN</from-outcome>
    <to-view-id>/xhtml/login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <display-name>employee_view</display-name>
+  <from-view-id>/xhtml/employee/*</from-view-id>
+  <navigation-case>
+   <from-outcome>/xhtml/menu.xhtml</from-outcome>
+   <to-view-id>/xhtml/menu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>

@@ -33,7 +33,7 @@
 						                header="Eliminar Empleado" severity="alert" widgetVar="dlgEliminar">  
 						                  
 						        <p:commandButton id="confirm" value="Sí" update=":messages" oncomplete="dlgEliminar.hide()"  
-						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(selectedEmployee)}" ajax="false"/>  
+						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(selectedEmployee)}" ajax="true"/>  
 						        <p:commandButton id="decline" value="No" onclick="dlgEliminar.hide()" type="button" />   
 						                  
 					</p:confirmDialog>  
@@ -46,21 +46,21 @@
 								<h:outputText value="#{employeeBean.selectedEmployee.office.officecode}"/>
 						
 					</h:panelGrid>
-					<h:panelGrid columns="2" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office != null}" >
-						<p:commandButton icon="edit" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.edit']}" action="#{employeeBean.editEmployeeOffice(employeeBean.selectedEmployee.employeenumber, employeeBean.selectedEmployee.office.officecode)}"/>
-						<p:commandButton icon="delete" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.delete']}" action="#{employeeBean.confirmDeleteEmployeeOffice(employeeBean.selectedEmployee.employeenumber, employeeBean.selectedEmployee.office.officecode)}"/>
+					<h:panelGrid columns="2" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office != null}">
+						<p:commandButton icon="edit" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.edit']}" />
+						<p:commandButton icon="delete" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.delete']}"/>
 					</h:panelGrid>
-					<h:panelGrid columns="1" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office == null}" >
-						<p:commandButton icon="new" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{employeeBean.newEmployeeOffice(employeeBean.selectedEmployee.employeenumber)}"/>
+					<h:panelGrid columns="1" styleClass="grid" columnClasses="label,value" rendered="#{employeeBean.selectedEmployee.office == null}">
+						<p:commandButton icon="new" ajax="false" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}"/>
 					</h:panelGrid>
 				</p:panel>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<p:panel>
-					<p:commandButton value="Volver" image="back" style="margin:0" action="/xhtml/menu.xhtml" ajax="true"/>
-				</p:panel>
+<!-- 				<br/> -->
+<!-- 				<br/> -->
+<!-- 				<br/> -->
+<!-- 				<br/> -->
+<!-- 				<p:panel> -->
+<!-- 					<p:commandButton value="Volver" icon="back" style="margin:0" action="/xhtml/menu.xhtml" ajax="true"/> -->
+<!-- 				</p:panel> -->
 				        <!-- <p:panelGrid id="panelVistaEmpleados" columns="2">  
 						    <f:facet name="header">  
 						        Datos del Empleado  
@@ -91,4 +91,5 @@
 				
 			</h:form>
 	</ui:define>
+	<ui:define name="footer"/>
 </ui:composition>

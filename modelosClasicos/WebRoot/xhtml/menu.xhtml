@@ -17,20 +17,8 @@
 <!-- 	            <f:selectItems value="#{themeSwitcherBean.themes}" /> -->
 <!-- 	            <p:ajax listener="#{themeSwitcherBean.saveTheme}" /> -->
 <!-- 	        </p:themeSwitcher> -->
-		  	<p:panelGrid id="panelBotones" columns="2" style="hidden">
-		  		<p:commandButton id="carBtn" value="Consultar Empleados" type="button" icon="ui-icon-search" />   
-  
-			    
-			    
-			    
-			    <p:commandButton id="insertBtn" value="Insertar Empleado" icon="ui-icon-star" type="button" onclick="dlg.show()">
-			    	<!-- <p:graphicImage value="/images/login.png" /> -->
-			    </p:commandButton>   
-  
-			    
-			    
-			   
-		  	</p:panelGrid>
+		  	
+		  	
 		  	
 	  				<p:commandButton id="nuevoEmpleado" icon="new" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.new']}" action="#{employeeBean.nuevoEmpleado}"/>
 			        <p:dataTable id="employeeTable" var="employee" value="#{employeeBean.lista_empleados}" rowKey="#{employee.employeenumber}" 
@@ -43,17 +31,17 @@
 				            Lista de Empleados  
 				        </f:facet>  
 				  
-				     
+				     	
 				        <p:column headerText="Operaciones"  id="number" exportable="false">
 				        
 				        	<p:commandButton icon="view" title="Consultar"  ajax="true" update="employeeTable" action="#{employeeBean.viewEmployee(employee.employeenumber)}"/>
-				        	<p:commandButton icon="edit" title="Modificar" update="employeeTable"/>
-				        	<p:commandButton icon="delete" title="Eliminar"  onclick="dlgEliminar.show()" />
+				        	<p:commandButton icon="edit" title="Modificar"  ajax="true" update="employeeTable" action="#{employeeBean.editEmployee(employee.employeenumber)}"/>
+				        	<p:commandButton icon="delete" title="Eliminar" action="#{employeeBean.removeItem(employee.employeenumber)}" ajax="true" update=":formMenu,employeeTable"/>
 				            <p:confirmDialog id="confirmDialog" message="¿Está seguro de eliminar el empleado seleccionado?"  
 						                header="Eliminar Empleado" severity="alert" widgetVar="dlgEliminar">  
 						                  
-						        <p:commandButton id="confirm" value="Sí" update="employeeTable,:messages" oncomplete="dlgEliminar.hide()"  
-						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employeeBean.selectedEmployee)}" ajax="false"/>  
+						        <p:commandButton id="confirm" value="Sí" update="employeeTable,:messages" oncomplete="dlgEliminar.hide()" 
+						                    actionListener="#{menuBean.delete}"  action="#{employeeBean.removeItem(employee.employeenumber)}" ajax="true"/>  
 						        <p:commandButton id="decline" value="No" onclick="dlgEliminar.hide()" type="button" />   
 						                  
 						    </p:confirmDialog>  
@@ -198,11 +186,11 @@
 				     		
 			    </p:dialog> 
 		  		<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
-				<p:messages />
+				<!-- 
 				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
 						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:*" />
 							<h:inputText id="employee_employeenumber" value="#{sessionScope['selectedEmployee.employeenumber']}" required="true" label="employee_employeenumber" />
-						<!-- 
+						
 						
 						<h:outputText value="#{employeemsgs['employee.lastname.title']}:" />
 							<h:inputText id="employee_lastname" value="#{employeeBean.selectedEmployee.lastname}" required="false" label="employee_lastname" />
@@ -217,12 +205,15 @@
 						<h:outputText value="#{employeemsgs['employee.jobtitle.title']}:" />
 							<h:inputText id="employee_jobtitle" value="#{employeeBean.selectedEmployee.jobtitle}" required="false" label="employee_jobtitle" />
 						
-						 -->
+						 
          			<h:panelGroup>
          				<p:commandButton image="save" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
          									action="#{employeeBean.saveEmployee}"/>
          			</h:panelGroup>
 				</h:panelGrid>
+				-->
+				
+				
 			</p:panel>
 		</h:form>           
 		    

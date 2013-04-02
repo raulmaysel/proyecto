@@ -77,16 +77,16 @@ public class EmployeeBean implements Serializable {
 		return SHOW_MENU;
 	}
     
-    public void removeItem(Employee employee){
-    	
-    	lista_empleados.remove(employee);
-    	ges_employee.baja_Employee(employee);
+    public String removeItem(Integer employeenumber){
+    	selectedEmployee = (Employee)ges_employee.consultar_PorClave(employeenumber);
+    	lista_empleados.remove(selectedEmployee);
+    	ges_employee.baja_Employee(selectedEmployee);
     	AjaxMessages.addMessage("Empleado Eliminado");
     	consultarEmpleados();
     	
     	System.out.println("Empleado Eliminado");
     	
-    	
+    	return SHOW_MENU;
     }
     
     public String viewEmployee(Integer employeenumber){
@@ -96,6 +96,13 @@ public class EmployeeBean implements Serializable {
     	Accesos_Contextos.getSesion().setAttribute("selectedEmployee", selectedEmployee);
     	return VIEW_EMPLOYEE;
     }
+    
+    public String editEmployee(Integer employeenumber) {
+		selectedEmployee = (Employee)ges_employee.consultar_PorClave(employeenumber);
+    	Accesos_Contextos.getSesion().setAttribute("selectedEmployee", selectedEmployee);
+
+		return NEW_EMPLOYEE;
+	}
     
     public void newEmployeeOffice(Integer employeenumber){
     	System.out.println("ea");

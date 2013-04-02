@@ -176,7 +176,7 @@
 		        padding:2px 5px;
 		} 
 		</style>
-			
+			<link rel="icon" href="#{request.contextPath}/images/terminal.png" type="image/png"/>
 			<ui:insert name="head"></ui:insert>
 		</h:head>
 	
@@ -199,8 +199,16 @@
 		 
 			    <div id="footer">
 			    	<ui:insert name="footer" >
-			    	  
+			    		
+			    	
 			    	</ui:insert>
+			    	<br/>
+					<br/>
+					<br/>
+					<br/>
+					<p:panel>
+						<p:commandButton value="Volver" icon="back" style="margin:0" action="/xhtml/menu.xhtml" ajax="true"/>
+					</p:panel>
 		    	</div>
 	 
 	        </div>

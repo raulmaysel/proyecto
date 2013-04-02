@@ -6,14 +6,18 @@
 	template="/WEB-INF/jsf/template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="newEmpleado">
-			<p:commandButton image="back" ajax="true" immediate="true" style="margin-right:20px;" value="#{employeemsgs['navigation.back']}" action="/xhtml/menu.xhtml"/>
+		<h:form id="newEmpleado" prependId="false">
+			
 		
 			<p:panel header="#{employeemsgs['employee.title']} Details" style="margin-top:10px">
 				<p:messages />
 				<h:panelGrid id="detail" columns="2" styleClass="grid" columnClasses="label,value">
-						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:*" />
-							<h:inputText id="employee_employeenumber" value="#{employeeBean.selectedEmployee.employeenumber}" required="true" label="employee_employeenumber" />
+						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}:*" rendered="#{employeeBean.selectedEmployee.employeenumber == null}"/>
+						<h:outputText value="#{employeemsgs['employee.employeenumber.title']}: " rendered="#{employeeBean.selectedEmployee.employeenumber != null}"/>
+							<h:inputText id="employee_employeenumber" value="#{employeeBean.selectedEmployee.employeenumber}" 
+											required="true" label="employee_employeenumber" 
+											rendered="#{employeeBean.selectedEmployee.employeenumber == null}"/>
+							<h:outputText value="#{employeeBean.selectedEmployee.employeenumber}" rendered="#{employeeBean.selectedEmployee.employeenumber != null}" />
 						<h:outputText value="#{employeemsgs['employee.lastname.title']}:" />
 							<h:inputText id="employee_lastname" value="#{employeeBean.selectedEmployee.lastname}" required="false" label="employee_lastname" />
 						<h:outputText value="#{employeemsgs['employee.firstname.title']}:" />
@@ -28,11 +32,18 @@
 							<h:inputText id="employee_jobtitle" value="#{employeeBean.selectedEmployee.jobtitle}" required="false" label="employee_jobtitle" />
          			<h:panelGroup>
          				<p:commandButton image="save" ajax="true" style="margin-right:20px;" value="#{employeemsgs['navigation.save']}"  
-         									action="#{employeeBean.saveEmployee}" update="formMenu:employeeTable,:messages"/>
+         									action="#{employeeBean.saveEmployee}" update=":messages"/>
          			</h:panelGroup>
 				</h:panelGrid>
 			</p:panel>
-
+<!-- 			<br/> -->
+<!-- 			<br/> -->
+<!-- 			<br/> -->
+<!-- 			<br/> -->
+<!-- 			<p:panel> -->
+<!-- 				<p:commandButton value="Volver" icon="back" style="margin:0" action="/xhtml/menu.xhtml" ajax="true"/> -->
+<!-- 			</p:panel> -->
 		</h:form>
 	</ui:define>
+	<ui:define name="footer"/>
 </ui:composition>
